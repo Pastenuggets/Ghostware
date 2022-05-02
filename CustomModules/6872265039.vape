@@ -1,4 +1,5 @@
 -- Credits to Inf Yield & all the other scripts that helped me make bypasses
+--if u skid ur cringe <3
 local GuiLibrary = shared.GuiLibrary
 local players = game:GetService("Players")
 local textservice = game:GetService("TextService")

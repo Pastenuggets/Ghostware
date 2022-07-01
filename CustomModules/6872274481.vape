@@ -9791,6 +9791,162 @@ runcode(function()
 end)
 
 runcode(function()
+	GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "GalaxyTheme",
+		["Function"] = function(callback)
+			if callback then
+				task.spawn(function()
+					for i,v in pairs(lighting:GetChildren()) do
+						if v:IsA("Atmosphere") or v:IsA("Sky") or v:IsA("PostEffect") then
+							v:Remove()
+						end
+					end
+					local skyNight = Instance.new("Sky")
+					skyNight.StarCount = 5000
+					skyNight.SkyboxUp = getcustomassetfunc("vape/assets/GalaxyThemeUp.png")
+					skyNight.SkyboxLf = getcustomassetfunc("vape/assets/GalaxyThemeLeft.png")
+					skyNight.SkyboxFt = getcustomassetfunc("vape/assets/GalaxyThemeFront.png")
+					skyNight.SkyboxBk = getcustomassetfunc("vape/assets/GalaxyThemeBack.png")
+					skyNight.SkyboxDn = getcustomassetfunc("vape/assets/GalaxyThemeDown.png")
+					skyNight.SkyboxRt = getcustomassetfunc("vape/assets/GalaxyThemeRight.png")
+					skyNight.SunTextureId = "rbxassetid://6196665106"
+					skyNight.SunAngularSize = 11
+					skyNight.MoonTextureId = "rbxassetid://8139665943"
+					skyNight.MoonAngularSize = 30
+					skyNight.Parent = lighting
+					local sunray = Instance.new("SunRaysEffect")
+					sunray.Intensity = 0.03
+					sunray.Parent = lighting
+					local bloom = Instance.new("BloomEffect")
+					bloom.Threshold = 2
+					bloom.Intensity = 1
+					bloom.Size = 2
+					bloom.Parent = lighting
+					local atmosphere = Instance.new("Atmosphere")
+					atmosphere.Density = 0.3
+					atmosphere.Offset = 0.25
+					atmosphere.Color = Color3.fromRGB(198, 198, 198)
+					atmosphere.Decay = Color3.fromRGB(104, 112, 124)
+					atmosphere.Glare = 0
+					atmosphere.Haze = 0
+					atmosphere.Parent = lighting
+				end)
+			else
+				for i,v in pairs(lighting:GetChildren()) do
+					if v:IsA("Atmosphere") or v:IsA("Sky") or v:IsA("PostEffect") then
+						v:Remove()
+					end
+				end
+			end
+		end
+	})
+end)
+
+runcode(function()
+	GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "CloudTheme",
+		["Function"] = function(callback)
+			if callback then
+				task.spawn(function()
+					for i,v in pairs(lighting:GetChildren()) do
+						if v:IsA("Atmosphere") or v:IsA("Sky") or v:IsA("PostEffect") then
+							v:Remove()
+						end
+					end
+					local skyCloud = Instance.new("Sky")
+					skyCloud.StarCount = 5000
+					skyCloud.SkyboxUp = getcustomassetfunc("vape/assets/CloudThemeUp.png")
+					skyCloud.SkyboxLf = getcustomassetfunc("vape/assets/CloudThemeLeft.png")
+					skyCloud.SkyboxFt = getcustomassetfunc("vape/assets/CloudThemeFront.png")
+					skyCloud.SkyboxBk = getcustomassetfunc("vape/assets/CloudThemeBack.png")
+					skyCloud.SkyboxDn = getcustomassetfunc("vape/assets/CloudThemeDown.png")
+					skyCloud.SkyboxRt = getcustomassetfunc("vape/assets/CloudThemeRight.png")
+					skyCloud.SunTextureId = "rbxassetid://6196665106"
+					skyCloud.SunAngularSize = 11
+					skyCloud.MoonTextureId = "rbxassetid://8139665943"
+					skyCloud.MoonAngularSize = 30
+					skyCloud.Parent = lighting
+					local sunray = Instance.new("SunRaysEffect")
+					sunray.Intensity = 0.03
+					sunray.Parent = lighting
+					local bloom = Instance.new("BloomEffect")
+					bloom.Threshold = 2
+					bloom.Intensity = 1
+					bloom.Size = 2
+					bloom.Parent = lighting
+					local atmosphere = Instance.new("Atmosphere")
+					atmosphere.Density = 0.3
+					atmosphere.Offset = 0.25
+					atmosphere.Color = Color3.fromRGB(198, 198, 198)
+					atmosphere.Decay = Color3.fromRGB(104, 112, 124)
+					atmosphere.Glare = 0
+					atmosphere.Haze = 0
+					atmosphere.Parent = lighting
+				end)
+			else
+				for i,v in pairs(lighting:GetChildren()) do
+					if v:IsA("Atmosphere") or v:IsA("Sky") or v:IsA("PostEffect") then
+						v:Remove()
+					end
+				end
+			end
+		end
+	})
+end)
+
+runcode(function()
+	GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "PlanetaryTheme",
+		["Function"] = function(callback)
+			if callback then
+				task.spawn(function()
+					for i,v in pairs(lighting:GetChildren()) do
+						if v:IsA("Atmosphere") or v:IsA("Sky") or v:IsA("PostEffect") then
+							v:Remove()
+						end
+					end
+					local planetaryCloud = Instance.new("Sky")
+					planetaryCloud.StarCount = 5000
+					planetaryCloud.SkyboxUp = getcustomassetfunc("vape/assets/PlanetaryThemeUp.png")
+					planetaryCloud.SkyboxLf = getcustomassetfunc("vape/assets/PlanetaryThemeLeft.png")
+					planetaryCloud.SkyboxFt = getcustomassetfunc("vape/assets/PlanetaryThemeFront.png")
+					planetaryCloud.SkyboxBk = getcustomassetfunc("vape/assets/PlanetaryThemeBack.png")
+					planetaryCloud.SkyboxDn = getcustomassetfunc("vape/assets/PlanetaryThemeDown.png")
+					planetaryCloud.SkyboxRt = getcustomassetfunc("vape/assets/PlanetaryThemeRight.png")
+					planetaryCloud.SunTextureId = "rbxassetid://6196665106"
+					planetaryCloud.SunAngularSize = 11
+					planetaryCloud.MoonTextureId = "rbxassetid://8139665943"
+					planetaryCloud.MoonAngularSize = 30
+					planetaryCloud.Parent = lighting
+					local sunray = Instance.new("SunRaysEffect")
+					sunray.Intensity = 0.03
+					sunray.Parent = lighting
+					local bloom = Instance.new("BloomEffect")
+					bloom.Threshold = 2
+					bloom.Intensity = 1
+					bloom.Size = 2
+					bloom.Parent = lighting
+					local atmosphere = Instance.new("Atmosphere")
+					atmosphere.Density = 0.3
+					atmosphere.Offset = 0.25
+					atmosphere.Color = Color3.fromRGB(198, 198, 198)
+					atmosphere.Decay = Color3.fromRGB(104, 112, 124)
+					atmosphere.Glare = 0
+					atmosphere.Haze = 0
+					atmosphere.Parent = lighting
+				end)
+			else
+				for i,v in pairs(lighting:GetChildren()) do
+					if v:IsA("Atmosphere") or v:IsA("Sky") or v:IsA("PostEffect") then
+						v:Remove()
+					end
+				end
+			end
+		end
+	})
+end)
+
+runcode(function()
 	local autoheal = {["Enabled"] = false}
 	local autohealval = {["Value"] = 100}
 

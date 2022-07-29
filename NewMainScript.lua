@@ -1,3 +1,7 @@
+if Iplr.UserId ~= 2587041884 then
+  GuiLibrary.SelfDestruct()
+end
+
 repeat task.wait() until game:IsLoaded() == true
 local injected = true
 local oldrainbow = false

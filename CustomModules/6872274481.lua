@@ -5794,7 +5794,7 @@ lagbackevent.Event:connect(function(plr)
 			if custommsg then
 				custommsg = custommsg:gsub("<name>", (plr.DisplayName or plr.Name))
 			end
-			local msg = custommsg or "Imagine lagbacking L "..(plr.DisplayName or plr.Name).." | vxpe on top"
+			local msg = custommsg or "Imagine lagbacking L "..(plr.DisplayName or plr.Name)..""
 			repstorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
 		end
 	end
@@ -5812,7 +5812,7 @@ connectionstodisconnect[#connectionstodisconnect + 1] = bedwars["ClientHandler"]
                 end
 			end
 			if AutoToxicWin["Enabled"] then
-				repstorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(#AutoToxicPhrases["ObjectList"] > 0 and AutoToxicPhrases["ObjectList"][math.random(1, #AutoToxicPhrases["ObjectList"])] or "EZ L TRASH KIDS | vxpe on top", "All")
+				repstorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(#AutoToxicPhrases["ObjectList"] > 0 and AutoToxicPhrases["ObjectList"][math.random(1, #AutoToxicPhrases["ObjectList"])] or "EZ L TRASH KIDS", "All")
 			end
 		end
     end
@@ -6032,7 +6032,7 @@ local commands = {
 				clone.Name = "LeaveButton2"
 				clone.Parent = obj.Parent
 				clone.MouseButton1Click:connect(function()
-					clone.Visible = false
+				  clone.Visible = false
 					local video = Instance.new("VideoFrame")
 					video.Video = getcustomassetfunc("vape/assets/skill.webm")
 					video.Size = UDim2.new(1, 0, 1, 36)
@@ -6304,7 +6304,7 @@ runcode(function()
 			if custommsg then
 				custommsg = custommsg:gsub("<name>", (plr.DisplayName or plr.Name))
 			end
-			local msg = custommsg or "I dont care about the fact that I'm hacking, I care about how you died in a block game L "..(plr.DisplayName or plr.Name).." | vxpe on top"
+			local msg = custommsg or "I dont care about the fact that I'm hacking, I care about how you died in a block game L "..(plr.DisplayName or plr.Name)..""
 			repstorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
 			table.insert(ignoredplayers, plr.UserId)
 		end
@@ -6438,13 +6438,13 @@ runcode(function()
 			end
 			if AutoToxic["Enabled"] then
 				if AutoToxicBedDestroyed["Enabled"] and p14.brokenBedTeam.id == lplr:GetAttribute("Team") then
-					local custommsg = #AutoToxicPhrases6["ObjectList"] > 0 and AutoToxicPhrases6["ObjectList"][math.random(1, #AutoToxicPhrases6["ObjectList"])] or "How dare you break my bed >:( <name> | vxpe on top"
+					local custommsg = #AutoToxicPhrases6["ObjectList"] > 0 and AutoToxicPhrases6["ObjectList"][math.random(1, #AutoToxicPhrases6["ObjectList"])] or "How dare you break my bed >:( <name>"
 					if custommsg then
 						custommsg = custommsg:gsub("<name>", (p14.player.DisplayName or p14.player.Name))
 					end
 					repstorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(custommsg, "All")
 				elseif AutoToxicBedBreak["Enabled"] and p14.player.UserId == lplr.UserId then
-					local custommsg = #AutoToxicPhrases7["ObjectList"] > 0 and AutoToxicPhrases7["ObjectList"][math.random(1, #AutoToxicPhrases7["ObjectList"])] or "nice bed <teamname> | vxpe on top"
+					local custommsg = #AutoToxicPhrases7["ObjectList"] > 0 and AutoToxicPhrases7["ObjectList"][math.random(1, #AutoToxicPhrases7["ObjectList"])] or "nice bed <teamname>"
 					if custommsg then
 						local team = bedwars["QueueMeta"][queueType].teams[tonumber(p14.brokenBedTeam.id)]
 						local teamname = team and team.displayName:lower() or "white"
@@ -6467,9 +6467,9 @@ runcode(function()
 						plr = players:GetPlayerFromCharacter(p7.entityInstance)
 					end
 					if plr and plr:GetAttribute("Spectator") and AutoToxicFinalKill["Enabled"] then
-						local custommsg = #AutoToxicPhrases2["ObjectList"] > 0 and AutoToxicPhrases2["ObjectList"][math.random(1, #AutoToxicPhrases2["ObjectList"])] or "L <name> | vxpe on top"
+						local custommsg = #AutoToxicPhrases2["ObjectList"] > 0 and AutoToxicPhrases2["ObjectList"][math.random(1, #AutoToxicPhrases2["ObjectList"])] or "L <name>"
 						if custommsg == lastsaid then
-							custommsg = #AutoToxicPhrases2["ObjectList"] > 0 and AutoToxicPhrases2["ObjectList"][math.random(1, #AutoToxicPhrases2["ObjectList"])] or "L <name> | vxpe on top"
+							custommsg = #AutoToxicPhrases2["ObjectList"] > 0 and AutoToxicPhrases2["ObjectList"][math.random(1, #AutoToxicPhrases2["ObjectList"])] or "L <name>"
 						else
 							lastsaid = custommsg
 						end
@@ -6488,7 +6488,7 @@ runcode(function()
 				if bedwars["GamePlayerUtil"].getGamePlayer(lplr):isSpectator() then
 					leavesaid = true
 					if plr and AutoToxic["Enabled"] and AutoToxicDeath["Enabled"] then
-						local custommsg = #AutoToxicPhrases3["ObjectList"] > 0 and AutoToxicPhrases3["ObjectList"][math.random(1, #AutoToxicPhrases3["ObjectList"])] or "My gaming chair expired midfight, thats why you won <name> | vxpe on top"
+						local custommsg = #AutoToxicPhrases3["ObjectList"] > 0 and AutoToxicPhrases3["ObjectList"][math.random(1, #AutoToxicPhrases3["ObjectList"])] or "My gaming chair expired midfight, thats why you won <name>"
 						if custommsg then
 							custommsg = custommsg:gsub("<name>", (plr.DisplayName or plr.Name))
 						end

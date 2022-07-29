@@ -1,5 +1,5 @@
 if shared.VapeExecuted then
-	local VERSION = "4.08"..(shared.VapePrivate and " PRIVATE" or "")
+	local VERSION = "4.09"..(shared.VapePrivate and " PRIVATE" or "")
 	local customdir = (shared.VapePrivate and "vapeprivate/" or "vape/")
 	local rainbowvalue = 0
 	local cam = game:GetService("Workspace").CurrentCamera
@@ -49,7 +49,7 @@ if shared.VapeExecuted then
 			end
 			return readfile("vape/"..scripturl)
 		else
-			local res = game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..scripturl, true)
+			local res = game:HttpGet("https://raw.githubusercontent.com/NTDCore/VapeV4ForRoblox/main/"..scripturl, true)
 			assert(res ~= "404: Not Found", "File not found")
 			return res
 		end
@@ -135,7 +135,7 @@ if shared.VapeExecuted then
 				textlabel:Remove()
 			end)
 			local req = requestfunc({
-				Url = "https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..path:gsub("vape/assets", "assets"),
+				Url = "https://raw.githubusercontent.com/NTDCore/VapeV4ForRoblox/main/"..path:gsub("vape/assets", "assets"),
 				Method = "GET"
 			})
 			writefile(path, req.Body)
@@ -6269,7 +6269,7 @@ if shared.VapeExecuted then
 		image.BackgroundTransparency = 1
 		image.Name = "Frame"
 		image.ScaleType = Enum.ScaleType.Slice
-		image.Image = getcustomassetfunc("vape/assets/NotificationBackground.png")
+		image.Image = "http://www.roblox.com/asset/?id=10052231228"
 		image.Size = UDim2.new(1, 61, 0, 159)
 		image.Parent = frame
 		local uicorner = Instance.new("UICorner")
@@ -6287,12 +6287,12 @@ if shared.VapeExecuted then
 		frame2.ScaleType = Enum.ScaleType.Slice
 		frame2.Position = UDim2.new(0, 63, 1, -36)
 		frame2.ZIndex = 2
-		frame2.Image = getcustomassetfunc("vape/assets/NotificationBar.png")
+		frame2.Image = "http://www.roblox.com/asset/?id=10061502695"
 		frame2.BorderSizePixel = 0
 		frame2.Parent = image
 		local icon = Instance.new("ImageLabel")
 		icon.Name = "IconLabel"
-		icon.Image = getcustomassetfunc(customicon and "vape/"..customicon or "vape/assets/InfoNotification.png")
+		icon.Image = "http://www.roblox.com/asset/?id=10397599982"
 		icon.BackgroundTransparency = 1
 		icon.Position = UDim2.new(0, -6, 0, -6)
 		icon.Size = UDim2.new(0, 60, 0, 60)

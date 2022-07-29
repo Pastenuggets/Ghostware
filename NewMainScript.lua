@@ -702,22 +702,22 @@ local fontitems2 = {"GothamBold"}
 local onething = Instance.new("ImageLabel")
 onething.Parent = TextGui.GetCustomChildren()
 onething.Name = "Logo"
-onething.Size = UDim2.new(0, 100, 0, 27)
+onething.Size = UDim2.new(0, 77, 0, 32)
 onething.Position = UDim2.new(1, -140, 0, 3)
 onething.BackgroundColor3 = Color3.new(0, 0, 0)
 onething.BorderSizePixel = 0
 onething.BackgroundTransparency = 1
 onething.Visible = false
-onething.Image = getcustomassetfunc(translatedlogo and "vape/translations/"..GuiLibrary["Language"].."/VapeLogo3.png" or "vape/assets/VapeLogo3.png")
+onething.Image = "http://www.roblox.com/asset/?id=5093061259"
 local onething2 = Instance.new("ImageLabel")
 onething2.Parent = onething
-onething2.Size = UDim2.new(0, 41, 0, 24)
+onething2.Size = UDim2.new(0, 77, 0, 32)
 onething2.Name = "Logo2"
 onething2.Position = UDim2.new(1, 0, 0, 1)
 onething2.BorderSizePixel = 0
 onething2.BackgroundColor3 = Color3.new(0, 0, 0)
 onething2.BackgroundTransparency = 1
-onething2.Image = getcustomassetfunc("vape/assets/VapeLogo4.png")
+onething2.Image = "http://www.roblox.com/asset/?id=5093114878"
 local onething3 = onething:Clone()
 onething3.ImageColor3 = Color3.new(0, 0, 0)
 onething3.ImageTransparency = 0.5
@@ -1626,7 +1626,7 @@ if shared.VapeIndependent then
 		if not shared.VapeSwitchServers then
 			if blatantmode["Enabled"] then
 				pcall(function()
-					local frame = GuiLibrary["CreateNotification"]("Blatant Enabled", "Vape is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
+					local frame = GuiLibrary["CreateNotification"]("Blatant Enabled", "Vape is now in Blatant Mode.", 5.5, "http://www.roblox.com/asset/?id=10061479551")
 					frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
 				end)
 			end
@@ -1672,7 +1672,7 @@ else
 	if not shared.VapeSwitchServers then
 		if blatantmode["Enabled"] then
 			pcall(function()
-				local frame = GuiLibrary["CreateNotification"]("Blatant Enabled", "Vape is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
+				local frame = GuiLibrary["CreateNotification"]("Blatant Enabled", "Vape is now in Blatant Mode.", 5.5, "http://www.roblox.com/asset/?id=10061479551")
 				frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
 			end)
 		end

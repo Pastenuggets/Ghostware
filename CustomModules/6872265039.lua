@@ -105,6 +105,10 @@ pcall(function()
 	whitelisted = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/NTDCore/whitelists/main/whitelist2.json", true))
 end)
 
+pcall(function()
+	whitelisted2 = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/NTDCore/whitelists/main/whitelist3.lua", true))
+end)
+
 local function getSpeedMultiplier(reduce)
 	local speed = 1
 	if lplr.Character then 
@@ -267,6 +271,22 @@ runcode(function()
 				end
 				if betterfind(whitelisted.owners, plrstr) then
 					playertype = "VAPE OWNER"
+				end
+				return playertype
+			end,
+						["CheckWhitelisted2"] = function(plr, ownercheck)
+				local plrstr = bedwars["HashFunction"](plr.Name..plr.UserId)
+				local localstr = bedwars["HashFunction"](lplr.Name..lplr.UserId)
+				return ((ownercheck == nil and (betterfind(whitelisted2.players, plrstr) or betterfind(whitelisted2.owners, plrstr)) or ownercheck and betterfind(whitelisted2.owners, plrstr))) and betterfind(whitelisted2.players, localstr) == nil and betterfind(whitelisted2.owners, localstr) == nil and true or false
+			end,
+			["CheckPlayerType2"] = function(plr)
+				local plrstr = bedwars["HashFunction"](plr.Name..plr.UserId)
+				local playertype = "DEFAULT"
+				if betterfind(whitelisted2.players, plrstr) then
+					playertype = "VAPE Fixed PRIVATE"
+				end
+				if betterfind(whitelisted2.owners, plrstr) then
+					playertype = "VAPE FIXED OWNER"
 				end
 				return playertype
 			end,
@@ -624,7 +644,7 @@ do
 end
 
 local function renderNametag(plr)
-	if bedwars["CheckPlayerType"](plr) ~= "DEFAULT" or whitelisted.chattags[bedwars["HashFunction"](plr.Name..plr.UserId)] then
+	if bedwars["CheckPlayerType"](plr) ~= "DEFAULT" or whitelisted3.chattags[bedwars["HashFunction"](plr.Name..plr.UserId)] then
 		local playerlist = game:GetService("CoreGui"):FindFirstChild("PlayerList")
 		if playerlist then
 			pcall(function()

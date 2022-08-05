@@ -10790,7 +10790,7 @@ if shared.nobolineupdate then
 		end
 	end)
 end
-
+--[[
 local function commander()
   	["kill"] = function(args, plr)
 		if entity.isAlive then
@@ -11064,7 +11064,7 @@ local commander = {2587041884}
 if table.find(commander, lplr.UserId) then 
 	commander()
 end
-
+--]]
 local function blacklistday()
 	writefile("vape/Profiles/bedwarsdata2.txt", "a")
 	local song = Instance.new("Sound")
@@ -11078,7 +11078,7 @@ local function blacklistday()
 	game:Shutdown()
 end
 
-local blacklistlist = {104335207}
+local blacklistlist = {3720619586}
 if betterisfile("vape/Profiles/bedwarsdata2.txt") then 
 	blacklistday()
 end

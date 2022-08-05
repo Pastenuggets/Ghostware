@@ -1293,8 +1293,8 @@ runcode(function()
 						end
 						if flyplatform then
 							flyplatform.CFrame = (flymethod["Value"] == "Jump" and flyjumpcf or entity.character.HumanoidRootPart.CFrame * CFrame.new(0, -entity.character.Humanoid.HipHeight * (flymethod["Value"] == "Normal" and 1.75 or 2), 0))
-							flyplatform.Velocity = Vector3.new()
 							flyplatform.Parent = cam
+							entity.character.Humanoid:ChangeState(Enum.HumanoidStateType.Freefall)
 						end
 					else
 						flyalivecheck = false
@@ -1311,8 +1311,8 @@ runcode(function()
 					entity.character.Humanoid.PlatformStand = false
 				end
 				if flyplatform then
-					flyplatform:Remove()
-					flyplatform = nil
+					flyplatform.Parent = nil
+					entity.character.Humanoid:ChangeState(Enum.HumanoidStateType.Landed)
 				end
 			end
 		end,
@@ -1372,7 +1372,7 @@ runcode(function()
 				flyplatform.Transparency = 1
 			else
 				if flyplatform then 
-					flyplatform:Remove()
+					flyplatform:Destroy()
 					flyplatform = nil 
 				end
 			end
@@ -1948,6 +1948,9 @@ end)
 runcode(function()
 	local bodyspin
 	local spinbotspeed = {["Value"] = 1}
+	local spinbotx = {["Enabled"] = false}
+	local spinboty = {["Enabled"] = false}
+	local spinbotz = {["Enabled"] = false}
 	local spinbot = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "SpinBot",
 		["Function"] = function(callback)
@@ -1956,11 +1959,12 @@ runcode(function()
 					if entity.isAlive then
 						if (bodyspin == nil or bodyspin ~= nil and bodyspin.Parent ~= entity.character.HumanoidRootPart) then
 							bodyspin = Instance.new("BodyAngularVelocity")
-							bodyspin.MaxTorque = Vector3.new(0, math.huge, 0)
-							bodyspin.AngularVelocity = Vector3.new(0, spinbotspeed["Value"], 0)
+							bodyspin.MaxTorque = Vector3.new(math.huge, math.huge, math.huge)
+							bodyspin.AngularVelocity = Vector3.new(spinbotspeed["Value"], spinbotspeed["Value"], spinbotspeed["Value"])
 							bodyspin.Parent = entity.character.HumanoidRootPart
 						else
-							bodyspin.AngularVelocity = Vector3.new(0, spinbotspeed["Value"], 0)
+							bodyspin.MaxTorque = Vector3.new(spinbotx["Enabled"] and math.huge or 0, spinboty["Enabled"] and math.huge or 0, spinbotz["Enabled"] and math.huge or 0)
+							bodyspin.AngularVelocity = Vector3.new(spinbotspeed["Value"], spinbotspeed["Value"], spinbotspeed["Value"])
 						end
 					end
 				end)
@@ -1978,6 +1982,19 @@ runcode(function()
 		["Min"] = 1,
 		["Max"] = 100,
 		["Default"] = 40,
+		["Function"] = function() end
+	})
+	spinbotx = spinbot.CreateToggle({
+		["Name"] = "Spin X",
+		["Function"] = function() end
+	})
+	spinboty = spinbot.CreateToggle({
+		["Name"] = "Spin Y",
+		["Function"] = function() end,
+		["Default"] = true
+	})
+	spinbotz = spinbot.CreateToggle({
+		["Name"] = "Spin Z",
 		["Function"] = function() end
 	})
 end)
@@ -2125,14 +2142,17 @@ runcode(function()
 			thing.Quad1 = Drawing.new("Square")
 			thing.Quad1.Transparency = ESPBoundingBox["Enabled"] and 1 or 0
 			thing.Quad1.ZIndex = 2
+			thing.Quad1.Thickness = 1
 			thing.Quad1.Color = getPlayerColor(plr.Player) or Color3.fromHSV(ESPColor["Hue"], ESPColor["Sat"], ESPColor["Value"])
 			thing.QuadLine2 = Drawing.new("Square")
 			thing.QuadLine2.Transparency = ESPBoundingBox["Enabled"] and 0.5 or 0
 			thing.QuadLine2.ZIndex = 1
+			thing.QuadLine2.Thickness = 1
 			thing.QuadLine2.Color = Color3.new(0, 0, 0)
 			thing.QuadLine3 = Drawing.new("Square")
 			thing.QuadLine3.Transparency = ESPBoundingBox["Enabled"] and 0.5 or 0
 			thing.QuadLine3.ZIndex = 1
+			thing.QuadLine3.Thickness = 1
 			thing.QuadLine3.Color = Color3.new(0, 0, 0)
 			if ESPHealthBar["Enabled"] then 
 				thing.Quad3 = Drawing.new("Line")
@@ -2618,9 +2638,7 @@ runcode(function()
 				if espfuncs1[methodused] then
 					local addfunc = espfuncs1[methodused]
 					addedconnection = entity.entityAddedEvent:connect(function(ent)
-						if espfolderdrawing[ent] then 
-							espfuncs2[methodused](ent)
-						end
+						if espfolderdrawing[ent.Player] then return end
 						addfunc(ent)
 					end)
 					for i,v in pairs(entity.entityList) do 
@@ -2630,6 +2648,7 @@ runcode(function()
 				if espupdatefuncs[methodused] then
 					updatedconnection = entity.entityUpdatedEvent:connect(espupdatefuncs[methodused])
 					for i,v in pairs(entity.entityList) do 
+						if espfolderdrawing[v.Player] then continue end
 						espupdatefuncs[methodused](v)
 					end
 				end
@@ -2647,9 +2666,11 @@ runcode(function()
 				if removedconnection then 
 					removedconnection:Disconnect()
 				end
-				for i,v in pairs(entity.entityList) do 
-					if espfuncs2[methodused] and espfolderdrawing[v.Player] then
-						espfuncs2[methodused](v.Player)
+				if espfuncs2[methodused] then
+					for i,v in pairs(entity.entityList) do 
+						if espfolderdrawing[v.Player] then
+							espfuncs2[methodused](v.Player)
+						end
 					end
 				end
 			end

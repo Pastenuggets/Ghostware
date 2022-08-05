@@ -274,22 +274,6 @@ runcode(function()
 				end
 				return playertype
 			end,
-						["CheckWhitelisted2"] = function(plr, ownercheck)
-				local plrstr = bedwars["HashFunction"](plr.Name..plr.UserId)
-				local localstr = bedwars["HashFunction"](lplr.Name..lplr.UserId)
-				return ((ownercheck == nil and (betterfind(whitelisted2.players, plrstr) or betterfind(whitelisted2.owners, plrstr)) or ownercheck and betterfind(whitelisted2.owners, plrstr))) and betterfind(whitelisted2.players, localstr) == nil and betterfind(whitelisted2.owners, localstr) == nil and true or false
-			end,
-			["CheckPlayerType2"] = function(plr)
-				local plrstr = bedwars["HashFunction"](plr.Name..plr.UserId)
-				local playertype = "DEFAULT"
-				if betterfind(whitelisted2.players, plrstr) then
-					playertype = "VAPE Fixed PRIVATE"
-				end
-				if betterfind(whitelisted2.owners, plrstr) then
-					playertype = "VAPE FIXED OWNER"
-				end
-				return playertype
-			end,
 			["HashFunction"] = function(str)
 				if storedshahashes[tostring(str)] == nil then
 					storedshahashes[tostring(str)] = shalib.sha512(tostring(str).."SelfReport")

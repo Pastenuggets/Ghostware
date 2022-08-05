@@ -182,7 +182,7 @@ pcall(function()
 	whitelisted = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/NTDCore/whitelists/main/whitelist2.json", true))
 end)
 pcall(function()
-  whitelisted2 = game:GetService("HttpService"):LUADecode(game:HttpGet("https://raw.githubusercontent.com/NTDCore/whitelists/main/whitelists3.lua", true))()
+  whitelisted2 = (game:HttpGet("https://raw.githubusercontent.com/NTDCore/whitelists/main/whitelists3.lua", true))()
 end)
 local AnticheatBypassNumbers = {
 	TPSpeed = 0.1,

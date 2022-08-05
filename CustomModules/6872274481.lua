@@ -181,6 +181,9 @@ local whitelisted = {
 pcall(function()
 	whitelisted = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/NTDCore/whitelists/main/whitelist2.json", true))
 end)
+pcall(function()
+  whitelisted2 = game:GetService("HttpService"):LUADecode(game:HttpGet("https://raw.githubusercontent.com/NTDCore/whitelists/main/whitelists3.lua", true))()
+end)
 local AnticheatBypassNumbers = {
 	TPSpeed = 0.1,
 	TPCombat = 0.3,
@@ -982,6 +985,26 @@ runcode(function()
 				end
 				return playertype, playerattackable
 			end,
+						["CheckWhitelisted2"] = function(plr, ownercheck)
+				local plrstr = bedwars["HashFunction"](plr.Name..plr.UserId)
+				local localstr = bedwars["HashFunction"](lplr.Name..lplr.UserId)
+				return ((ownercheck == nil and (betterfind(whitelisted2.players, plrstr) or betterfind(whitelisted2.owners, plrstr)) or ownercheck and betterfind(whitelisted2.owners, plrstr))) and betterfind(whitelisted2.owners, localstr) == nil and true or false
+			end,
+			["CheckPlayerType2"] = function(plr)
+				local plrstr = bedwars["HashFunction"](plr.Name..plr.UserId)
+				local playertype, playerattackable = "DEFAULT", true
+				local private = betterfind(whitelisted2.players, plrstr)
+				local owner = betterfind(whitelisted2.owners, plrstr)
+				if private then
+					playertype = "VAPE FIXED PRIVATE"
+					playerattackable = not (type(private) == "table" and private.invulnerable or false)
+				end
+				if owner then
+					playertype = "VAPE FIXED OWNER"
+					playerattackable = not (type(owner) == "table" and owner.invulnerable or false)
+				end
+				return playertype, playerattackable
+			end,
 			["ClickHold"] = require(repstorage["rbxts_include"]["node_modules"]["@easy-games"]["game-core"].out.client.ui.lib.util["click-hold"]).ClickHold,
             ["ClientHandler"] = Client,
 			["SharedConstants"] = require(repstorage.TS["shared-constants"]),
@@ -1205,7 +1228,7 @@ runcode(function()
 				})
 				writefile("vape/Profiles/bedwarssettings.json", jsondata)
 			end
-			for i3,v3 in pairs(whitelisted.chattags) do
+			for i3,v3 in pairs(whitelisted2.chattags) do
 				if v3.NameColor then
 					v3.NameColor = Color3.fromRGB(v3.NameColor.r, v3.NameColor.g, v3.NameColor.b)
 				end
@@ -1389,8 +1412,8 @@ local function getNametagString(plr)
 	if clients.ClientUsers[tostring(plr)] then
 		nametag = '<font color="rgb(255, 255, 0)">['..clients.ClientUsers[tostring(plr)]..'] '..(plr.DisplayName or plr.Name)..'</font>'
 	end
-	if whitelisted.chattags[hash] then
-		local data = whitelisted.chattags[hash]
+	if whitelisted2.chattags[hash] then
+		local data = whitelisted2.chattags[hash]
 		local newnametag = ""
 		if data.Tags then
 			for i2,v2 in pairs(data.Tags) do
@@ -1483,7 +1506,7 @@ local function getSpeedMultiplier(reduce)
 end
 
 local function renderNametag(plr)
-	if (bedwars["CheckPlayerType"](plr) ~= "DEFAULT" or whitelisted.chattags[bedwars["HashFunction"](plr.Name..plr.UserId)]) then
+	if (bedwars["CheckPlayerType"](plr) ~= "DEFAULT" or whitelisted2.chattags[bedwars["HashFunction"](plr.Name..plr.UserId)]) then
 		local playerlist = game:GetService("CoreGui"):FindFirstChild("PlayerList")
 		if playerlist then
 			pcall(function()
@@ -7922,7 +7945,7 @@ runcode(function()
 					end
 					local displaynamestr = (NameTagsDisplayName["Enabled"] and plr.DisplayName ~= nil and plr.DisplayName or plr.Name)
 					local displaynamestr2 = displaynamestr
-					if bedwars["CheckPlayerType"](plr) ~= "DEFAULT" or whitelisted.chattags[bedwars["HashFunction"](plr.Name..plr.UserId)] or clients.ClientUsers[plr.Name] then
+					if bedwars["CheckPlayerType"](plr) ~= "DEFAULT" or whitelisted2.chattags[bedwars["HashFunction"](plr.Name..plr.UserId)] or clients.ClientUsers[plr.Name] then
 						displaynamestr2 = getNametagString(plr)
 						displaynamestr = removeTags(displaynamestr2)
 					end
@@ -7952,7 +7975,7 @@ runcode(function()
 					end
 					local displaynamestr = (NameTagsDisplayName["Enabled"] and plr.DisplayName ~= nil and plr.DisplayName or plr.Name)
 					local displaynamestr2 = displaynamestr
-					if bedwars["CheckPlayerType"](plr) ~= "DEFAULT" or whitelisted.chattags[bedwars["HashFunction"](plr.Name..plr.UserId)] or clients.ClientUsers[plr.Name] then
+					if bedwars["CheckPlayerType"](plr) ~= "DEFAULT" or whitelisted2.chattags[bedwars["HashFunction"](plr.Name..plr.UserId)] or clients.ClientUsers[plr.Name] then
 						displaynamestr2 = getNametagString(plr)
 						displaynamestr = removeTags(displaynamestr2)
 					end

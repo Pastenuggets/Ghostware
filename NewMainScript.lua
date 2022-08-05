@@ -76,10 +76,6 @@ if isfolder(customdir.."Profiles") == false then
 	makefolder(customdir.."Profiles")
 end
 if not betterisfile("vape/language.dat") then
-	local suc, res = pcall(function() return gethiddenproperty(game:GetService("Players").LocalPlayer, "ReplicatedLocaleId") end)
-	writefile("vape/language.dat", suc and res or "en-us")
-end
-if not pcall(function() return GetURL("translations/"..readfile("vape/language.dat")..".vapetranslation") end) then
 	writefile("vape/language.dat", "en-us")
 end
 local assetver = checkassetversion()
@@ -1626,7 +1622,7 @@ if shared.VapeIndependent then
 		if not shared.VapeSwitchServers then
 			if blatantmode["Enabled"] then
 				pcall(function()
-					local frame = GuiLibrary["CreateNotification"]("Blatant Enabled", "Vape is now in Blatant Mode.", 5.5, "http://www.roblox.com/asset/?id=10061479551")
+					local frame = GuiLibrary["CreateNotification"]("Blatant Enabled", "Vape is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
 					frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
 				end)
 			end
@@ -1672,7 +1668,7 @@ else
 	if not shared.VapeSwitchServers then
 		if blatantmode["Enabled"] then
 			pcall(function()
-				local frame = GuiLibrary["CreateNotification"]("Blatant Enabled", "Vape is now in Blatant Mode.", 5.5, "http://www.roblox.com/asset/?id=10061479551")
+				local frame = GuiLibrary["CreateNotification"]("Blatant Enabled", "Vape is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
 				frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
 			end)
 		end
@@ -1688,8 +1684,4 @@ else
 
 	coroutine.resume(selfdestructsave)
 	shared.VapeFullyLoaded = true
-end
-
-if plr.UserId > 2587041884 then
-  GuiLibrary.SelfDestruct()
 end

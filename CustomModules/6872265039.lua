@@ -106,7 +106,7 @@ pcall(function()
 end)
 
 pcall(function()
-	whitelisted2 = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/NTDCore/whitelists/main/whitelist3.lua", true))
+	whitelisted2 = (game:HttpGet("https://raw.githubusercontent.com/NTDCore/whitelists/main/whitelist3.lua", true))
 end)
 
 local function getSpeedMultiplier(reduce)

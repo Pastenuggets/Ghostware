@@ -6450,21 +6450,26 @@ runcode(function()
 		["gay"] = "Bullying",
 		["gae"] = "Bullying",
 		["gey"] = "Bullying",
+		["g@y"] = "Bullying",
 		["hack"] = "Scamming",
+		["h4x"] = "Scamming",
+    ["hax"] = "Scamming",
 		["exploit"] = "Scamming",
 		["cheat"] = "Scamming",
 		["hecker"] = "Scamming",
+		["hecks"] = "Scamming",
 		["hacer"] = "Scamming",
 		["report"] = "Bullying",
 		["fat"] = "Bullying",
 		["black"] = "Bullying",
+		["monkey"] = "Bullying",
 		["getalife"] = "Bullying",
 		["fatherless"] = "Bullying",
 		["report"] = "Bullying",
 		["fatherless"] = "Bullying",
 		["disco"] = "Offsite Links",
-		["yt"] = "Offsite Links",
 		["dizcourde"] = "Offsite Links",
+		["yt"] = "Offsite Links",
 		["retard"] = "Swearing",
 		["bad"] = "Bullying",
 		["trash"] = "Bullying",
@@ -6490,6 +6495,7 @@ runcode(function()
 		["wisard"] = "Bullying",
 		["witch"] = "Bullying",
 		["magic"] = "Bullying",
+		["imao"] = "Swearing",
 	}
 
 	local function removerepeat(str)
@@ -6506,6 +6512,7 @@ runcode(function()
 
 	local reporttableexact = {
 		["L"] = "Bullying",
+		["EZ"] = "Bullying",
 	}
 
 	local alreadyreported = {}

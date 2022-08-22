@@ -6497,6 +6497,8 @@ runcode(function()
 		["magic"] = "Bullying",
 		["imao"] = "Swearing",
 		["sped"] = "Bullying",
+		["skid"] = "Bullying",
+		["scriptkiddie"] = "Bullying",
 	}
 
 	local function removerepeat(str)

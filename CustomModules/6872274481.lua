@@ -6453,7 +6453,7 @@ runcode(function()
 		["g@y"] = "Bullying",
 		["hack"] = "Scamming",
 		["h4x"] = "Scamming",
-    ["hax"] = "Scamming",
+                ["hax"] = "Scamming",
 		["exploit"] = "Scamming",
 		["cheat"] = "Scamming",
 		["hecker"] = "Scamming",

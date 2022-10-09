@@ -11004,6 +11004,21 @@ runcode(function()
 	})
 end)
 
+runcode(function()
+	local ⭐CreatorDetector = {["Enabled"] = false}
+	⭐CreatorDetector = ["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
+	       ["Name"] = "⭐CreatorDetector", 
+	       ["Function"] = function(callback)        
+	               if callback then
+			       for i, plr in pairs(players:GetChildren()) do
+			       if plr:IsInGroup(4199740) and plr:GetRankInGroup(4199740) >= 1 then
+					createwarning("Vape", "Youtuber found " .. plr.Name .. "(" .. plr.DisplayName .. ")", 20)
+					end
+				end
+			end
+		end
+})
+
 task.spawn(function()
 	local url = "https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/CustomModules/bedwarsdata"
 

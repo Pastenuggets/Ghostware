@@ -5225,7 +5225,7 @@ runcode(function()
                     return oldplay(Self, id, ...)
                 end
 				local targetedplayer
-				RunLoops:BindToHeartbeat("Killaura", 1, function()
+				RunLoops:BindToRenderStep("Killaura", 1, function()
 					for i,v in pairs(killauraboxes) do 
 						if v:IsA("BoxHandleAdornment") and v.Adornee then
 							local cf = v.Adornee and v.Adornee.CFrame
@@ -5317,7 +5317,7 @@ runcode(function()
 					until Killaura["Enabled"] == false
 				end)
             else
-				RunLoops:UnbindFromHeartbeat("Killaura") 
+				RunLoops:UnbindFromRenderStep("Killaura") 
                 killauranear = false
 				for i,v in pairs(killauraboxes) do 
 					v.Adornee = nil
@@ -6289,6 +6289,10 @@ runcode(function()
 			end
 		end
 		if AutoReport["Enabled"] and plr and plr ~= lplr and WhitelistFunctions:CheckPlayerType(plr) == "DEFAULT" then
+			if syn or fluxus then
+			     createwarning("AutoReport", "AutoReport is not supported for Synapse and Fluxus.", 10)
+			     AutoReport["ToggleButton"](false)
+                        end
             local reportreason, reportedmatch = findreport(tab.Message)
             if reportreason then 
 				if alreadyreported[plr] == nil then

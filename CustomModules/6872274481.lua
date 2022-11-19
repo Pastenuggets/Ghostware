@@ -15,6 +15,7 @@ workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
 	cam = (workspace.CurrentCamera or workspace:FindFirstChild("Camera") or Instance.new("Camera"))
 end)
 local targetinfo = shared.VapeTargetInfo
+local executorname = getexecutorname
 local collectionservice = game:GetService("CollectionService")
 local uis = game:GetService("UserInputService")
 local mouse = lplr:GetMouse()
@@ -6229,7 +6230,7 @@ runcode(function()
 		["Name"] = "Report Words",
 		["TempText"] = "phrase (to report)"
 	})
-
+        
 	connectionstodisconnect[#connectionstodisconnect + 1] = repstorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Connect(function(tab, channel)
 		local plr = players:FindFirstChild(tab["FromSpeaker"])
 		local args = tab.Message:split(" ")
@@ -6288,11 +6289,9 @@ runcode(function()
 				})
 			end
 		end
-		if AutoReport["Enabled"] and plr and plr ~= lplr and WhitelistFunctions:CheckPlayerType(plr) == "DEFAULT" then
-			if syn or fluxus then
-			     createwarning("AutoReport", "AutoReport is not supported for Synapse and Fluxus.", 10)
-			     AutoReport["ToggleButton"](false)
-                        end
+		if getexecutorname then
+		    if executor:lower():find("synapse x") then createwarning("AutoReport", "AutoReport is not supported on Synapse X.", 10) AutoReport["ToggleButton"](false) elseif executor:lower():find("fluxus") then createwarning("AutoReport", "AutoReport is not supported on Fluxus.", 10) AutoReport["ToggleButton"](false) end
+		end
             local reportreason, reportedmatch = findreport(tab.Message)
             if reportreason then 
 				if alreadyreported[plr] == nil then

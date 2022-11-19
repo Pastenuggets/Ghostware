@@ -6289,6 +6289,7 @@ runcode(function()
 				})
 			end
 		end
+		if AutoReport["Enabled"] and plr and plr ~= lplr and WhitelistFunctions:CheckPlayerType(plr) == "DEFAULT" then
 		if getexecutorname then
 		    if executor:lower():find("synapse x") then createwarning("AutoReport", "AutoReport is not supported on Synapse X.", 10) AutoReport["ToggleButton"](false) elseif executor:lower():find("fluxus") then createwarning("AutoReport", "AutoReport is not supported on Fluxus.", 10) AutoReport["ToggleButton"](false) end
 		end

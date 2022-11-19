@@ -4583,7 +4583,7 @@ runcode(function()
 		["Double"] = 10
 	})
 end)
-
+local executor = getexecutorname
 runcode(function()
 	local AutoReport = {["Enabled"] = false}
 	local reporttable = {
@@ -4677,7 +4677,11 @@ runcode(function()
 	AutoReport = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "AutoReport",
 		["Function"] = function(callback) 
-			if callback then 
+			if callback then
+			        if getexecutorname then
+				     if executor:lower():find("synapse x") then createwarning("AutoReport", "AutoReport is not supported on Synapse X.", 10) AutoReport["ToggleButton"](false) elseif executor:lower():find("fluxus") then createwarning("AutoReport", "AutoReport is not supported on Fluxus.", 10) AutoReport["ToggleButton"](false) end
+				end			
+				   
 				if repstorage:FindFirstChild("DefaultChatSystemChatEvents") then
 					chatconnection = repstorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Connect(function(tab, channel)
 						local plr = players:FindFirstChild(tab["FromSpeaker"])

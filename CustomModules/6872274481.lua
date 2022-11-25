@@ -6795,7 +6795,7 @@ runcode(function()
 				end
 			end
 		end, 
-		["HoverText"] = "Increases your movement.",
+		["HoverText"] = "Increases your movement speed.",
 		["ExtraText"] = function() 
 			if GuiLibrary["ObjectsThatCanBeSaved"]["Text GUIAlternate TextToggle"]["Api"]["Enabled"] then 
 				return alternatelist[table.find(speedmode["List"], speedmode["Value"])]

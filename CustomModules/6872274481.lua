@@ -8808,7 +8808,7 @@ runcode(function()
 									local pingspike = didpingspike() 
 									if pingspike then
 										if AnticheatBypassNotification["Enabled"] then
-											createwarning("AnticheatBypass", "Lagspike Detected : "..pingspike, 10)
+											createwarning("AnticheatBypass", "Lagspike detected: "..pingspike, 10)
 										end
 									else
 										if matchState ~= 2 and notlasso() then
@@ -8829,7 +8829,7 @@ runcode(function()
 							end
 							if (tick() - lagbacktime) >= 10 and (not lagbacknotification) then
 								lagbacknotification = true
-								createwarning("AnticheatBypass", "You have been lagbacked for a awfully long time", 10)
+								createwarning("AnticheatBypass", "You have been lagbacked for an awfully long time", 10)
 							end
 							cloneroot.Velocity = Vector3.zero
 							oldroot.Velocity = Vector3.zero

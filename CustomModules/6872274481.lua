@@ -8808,7 +8808,7 @@ runcode(function()
 									local pingspike = didpingspike() 
 									if pingspike then
 										if AnticheatBypassNotification["Enabled"] then
-											createwarning("AnticheatBypass", "Lagspike detected: "..pingspike, 10)
+											createwarning("AnticheatBypass", "Pingspike detected: "..pingspike, 10)
 										end
 									else
 										if matchState ~= 2 and notlasso() then
@@ -9747,7 +9747,7 @@ runcode(function()
 						task.delay(1, function()
 							local falseflag = didpingspike()
 							if falseflag then 
-								createwarning("Vape", "Lagspike Detected : "..falseflag, 10)
+								createwarning("Vape", "Pingspike detected: "..falseflag, 10)
 							else
 								lagbacks = lagbacks + 1
 							end

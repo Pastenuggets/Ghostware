@@ -6418,7 +6418,7 @@ runcode(function()
 		return res
 	end
 
-	local allowedmodules = {"Killaura", "Sprint", "AutoClicker", "AutoReport", "AutoReportV2", "AutoRelic", "AimAssist", "AutoLeave"}
+	local allowedmodules = {"Killaura", "Sprint", "AutoClicker", "AutoReport", "AutoReportV2", "AutoRelic", "AimAssist", "AutoLeave", "Cape"}
 	local function autoleaveplr(plr)
 		task.spawn(function()
 			if not shared.VapeFullyLoaded then

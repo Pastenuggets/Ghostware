@@ -4745,7 +4745,7 @@ runcode(function()
 					chatconnection = textchatservice.MessageReceived:Connect(function(tab)
 						local plr = tab.TextSource
 						local args = tab.Text:split(" ")
-						if AutoReport["Enabled"] and plr and plr ~= lplr and WhitelistFunctions:CheckPlayerType(plr) == "DEFAULT" then
+						if AutoReport["Enabled"] and plr and plr.Name ~= lplr.Name and WhitelistFunctions:CheckPlayerType(plr) == "DEFAULT" then
 							local reportreason, reportedmatch = findreport(tab.Text)
 							if reportreason then 
 								if alreadyreported[plr] == nil then
@@ -4771,7 +4771,7 @@ runcode(function()
 						chatconnection = repstorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Connect(function(tab, channel)
 							local plr = players:FindFirstChild(tab["FromSpeaker"])
 							local args = tab.Message:split(" ")
-							if AutoReport["Enabled"] and plr and plr ~= lplr and WhitelistFunctions:CheckPlayerType(plr) == "DEFAULT" then
+							if AutoReport["Enabled"] and plr and plr.Name ~= lplr.Name and WhitelistFunctions:CheckPlayerType(plr) == "DEFAULT" then
 								local reportreason, reportedmatch = findreport(tab.Message)
 								if reportreason then 
 									if alreadyreported[plr] == nil then

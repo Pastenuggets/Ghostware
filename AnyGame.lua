@@ -4759,7 +4759,7 @@ runcode(function()
 										end
 									end)
 									if AutoReportNotify["Enabled"] then 
-										createwarning("AutoReport", "Reported "..plr.Name.." for\n"..reportreason..' ('..reportedmatch..')', 15)
+										createwarning("AutoReport", "Reported "..plr.Name.." for "..reportreason..' ('..reportedmatch..')', 15)
 									end
 									alreadyreported[plr] = true
 								end
@@ -4785,7 +4785,7 @@ runcode(function()
 											end
 										end)
 										if AutoReportNotify["Enabled"] then 
-											createwarning("AutoReport", "Reported "..plr.Name.." for\n"..reportreason..' ('..reportedmatch..')', 15)
+											createwarning("AutoReport", "Reported "..plr.Name.." for "..reportreason..' ('..reportedmatch..')', 15)
 										end
 										alreadyreported[plr] = true
 									end

@@ -5050,7 +5050,7 @@ if betterisfile("vape/CustomModules/6872274481.lua") then
 	local parsedfile = readfile("vape/CustomModules/6872274481.lua")
 	if parsedfile and (parsedfile:lower():find("azura") or parsedfile:lower():find("piston")) then 
 		task.spawn(function()
-			lplr:Kick("You have been permanently been blacklisted from vape, Have a good day.")
+			lplr:Kick("You have been permanently blacklisted from vape, Have a good day.")
 		end)
 		task.wait(3)
 		while true do end

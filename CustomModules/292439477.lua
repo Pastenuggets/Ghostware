@@ -406,7 +406,7 @@ getfunctions = function()
 end
 getfunctions()
 teleportfunc = game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(State)
-    if State == Enum.TeleportState.Started then
+    if State == Enum.TeleportState.InProgress then
 		if shared.vapekickedfrom then
 			queueteleport('shared.vapekickedfrom = "'..shared.vapekickedfrom..'"')
 		end

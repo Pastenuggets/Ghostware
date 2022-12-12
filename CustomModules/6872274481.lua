@@ -1290,7 +1290,7 @@ task.spawn(function()
 end)
 
 connectionstodisconnect[#connectionstodisconnect + 1] = lplr.OnTeleport:Connect(function(State)
-    if State == Enum.TeleportState.Started then
+    if State == Enum.TeleportState.InProgress then
 		local clientstorestate = bedwars["ClientStoreHandler"] and bedwars["ClientStoreHandler"]:getState() or {Party = {members = 0}}
 		local queuedstring = ''
 		if clientstorestate.Party and clientstorestate.Party.members and #clientstorestate.Party.members > 0 then

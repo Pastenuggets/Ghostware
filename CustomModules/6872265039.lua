@@ -533,7 +533,7 @@ GuiLibrary["RemoveObject"]("TriggerBotOptionsButton")
 GuiLibrary["RemoveObject"]("ClientKickDisablerOptionsButton")
 
 teleportfunc = lplr.OnTeleport:Connect(function(State)
-    if State == Enum.TeleportState.Started then
+    if State == Enum.TeleportState.InProgress then
 		if shared.vapeoverlay then
 			queueteleport('shared.vapeoverlay = "'..shared.vapeoverlay..'"')
 		end

@@ -283,7 +283,8 @@ do
 	task.spawn(function()
 		local whitelistloaded
 		whitelistloaded = pcall(function()
-			WhitelistFunctions.WhitelistTable = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/whitelists/main/whitelist2.json", true))
+			local commit = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://api.github.com/repos/7GrandDadPGN/whitelists/commits", true))[1].commit.url:split("/commits/")[2]
+			WhitelistFunctions.WhitelistTable = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/whitelists/"..commit.."/whitelist2.json", true))
 		end)
 		shalib = loadstring(vapeGithubRequest("Libraries/sha.lua"))()
 		if not whitelistloaded or not shalib then return end

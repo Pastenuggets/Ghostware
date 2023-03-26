@@ -490,7 +490,6 @@ local function switchToAndUseTool(block, legit)
 			end
 		end
 		switchItem(tool.tool)
-		task.wait(0.1)
 	end
 end
 
@@ -1716,8 +1715,8 @@ runFunction(function()
 				if entityLibrary.isAlive then
 					task.spawn(function()
 						repeat
-							task.wait()
 							entityLibrary.character.HumanoidRootPart.CFrame = entityLibrary.character.HumanoidRootPart.CFrame + Vector3.new(0, -3, 0)
+							task.wait()
 						until not entityLibrary.isAlive
 					end)
 				end
@@ -2650,8 +2649,8 @@ runFunction(function()
 		local suc, res = pcall(function() return plr:GetRankInGroup(5774246) end)
 		if not suc then 
 			repeat
-				suc, res = pcall(function() return plr:GetRankInGroup(5774246) end)
 				task.wait()
+				suc, res = pcall(function() return plr:GetRankInGroup(5774246) end)
 			until suc
 		end
 		if plr.UserId == 1774814725 then 
@@ -3098,12 +3097,12 @@ runFunction(function()
 			if callback then 
 				task.spawn(function()
 					repeat
-						task.wait(0.1)
 						for i,v in pairs(getconnections(gameCamera:GetPropertyChangedSignal("CameraType"))) do 
 							if v.Function then
 								camcontrol = debug.getupvalue(v.Function, 1)
 							end
 						end
+						task.wait(0.1)
 					until camcontrol
 					local caminput = require(lplr.PlayerScripts.PlayerModule.CameraModule.CameraInput)
 					local num = Instance.new("IntValue")

@@ -400,7 +400,7 @@ if shared.VapeExecuted then
 		touchButton.MouseButton1Down:Connect(function()
 			touchedButton = true
 			local touchtick2 = tick()
-			repeat task.wait() until (tick() - touchtick2) > 1 or not touchedButton
+			repeat task.wait() until (tick() - touchtick2) > 3 or not touchedButton
 			if touchedButton then 
 				local ind = table.find(GuiLibrary.MobileButtons, touchButton)
 				if ind then table.remove(GuiLibrary.MobileButtons, ind) end
@@ -411,7 +411,7 @@ if shared.VapeExecuted then
 			touchedButton = false
 		end)
 		local touchCorner = Instance.new("UICorner")
-		touchCorner.CornerRadius = UDim.new(0, 1024)
+		touchCorner.CornerRadius = UDim.new(1, 0)
 		touchCorner.Parent = touchButton
 		local touchTextLimit = Instance.new("UITextSizeConstraint")
 		touchTextLimit.MaxTextSize = 16

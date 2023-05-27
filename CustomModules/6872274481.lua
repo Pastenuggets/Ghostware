@@ -3311,44 +3311,46 @@ runFunction(function()
 		Name = "GrappleExploit",
 		Function = function(callback)
 			if callback then
-				local grappleHooked = false
-				table.insert(GrappleExploit.Connections, bedwars.ClientHandler:Get("GrapplingHookFunctions"):Connect(function(p4)
-					if p4.hookFunction == "PLAYER_IN_TRANSIT" then
-						bedwarsStore.grapple = tick() + 1.8
-						grappleHooked = true
-						GrappleExploit.ToggleButton(false)
-					end
-				end))
+				repeat
+					local grappleHooked = false
+					table.insert(GrappleExploit.Connections, bedwars.ClientHandler:Get("GrapplingHookFunctions"):Connect(function(p4)
+						if p4.hookFunction == "PLAYER_IN_TRANSIT" then
+							bedwarsStore.grapple = tick() + 1.8
+							grappleHooked = true
+							GrappleExploit.ToggleButton(false)
+						end
+					end))
 
-				local fireball = getItem("grappling_hook")
-				if fireball then 
-					task.spawn(function()
-						repeat task.wait() until bedwars.CooldownController:getRemainingCooldown("grappling_hook") == 0 or (not GrappleExploit.Enabled)
-						if (not GrappleExploit.Enabled) then return end
-						local pos = entityLibrary.character.HumanoidRootPart.CFrame.p
-						local offsetshootpos = (CFrame.new(pos, pos + Vector3.new(0, -60, 0)) * CFrame.new(Vector3.new(-bedwars.BowConstantsTable.RelX, -bedwars.BowConstantsTable.RelY, -bedwars.BowConstantsTable.RelZ))).p
-						projectileRemote:CallServerAsync(fireball["tool"], nil, "grappling_hook_projectile", offsetshootpos, pos, Vector3.new(0, -60, 0), game:GetService("HttpService"):GenerateGUID(true), {drawDurationSeconds = 1}, workspace:GetServerTimeNow() - 0.045)
+					local fireball = getItem("grappling_hook")
+					if fireball then 
+						task.spawn(function()
+							repeat task.wait() until bedwars.CooldownController:getRemainingCooldown("grappling_hook") == 0 or (not GrappleExploit.Enabled)
+							if (not GrappleExploit.Enabled) then return end
+							local pos = entityLibrary.character.HumanoidRootPart.CFrame.p
+							local offsetshootpos = (CFrame.new(pos, pos + Vector3.new(0, -60, 0)) * CFrame.new(Vector3.new(-bedwars.BowConstantsTable.RelX, -bedwars.BowConstantsTable.RelY, -bedwars.BowConstantsTable.RelZ))).p
+							projectileRemote:CallServerAsync(fireball["tool"], nil, "grappling_hook_projectile", offsetshootpos, pos, Vector3.new(0, -60, 0), game:GetService("HttpService"):GenerateGUID(true), {drawDurationSeconds = 1}, workspace:GetServerTimeNow() - 0.045)
+						end)
+					else
+						warningNotification("GrappleExploit", "missing grapple hook", 3)
+						GrappleExploit.ToggleButton(false)
+						return
+					end
+
+					local startCFrame = entityLibrary.isAlive and entityLibrary.character.HumanoidRootPart.CFrame
+					RunLoops:BindToHeartbeat("GrappleExploit", function(delta) 
+						if GuiLibrary.ObjectsThatCanBeSaved["Lobby CheckToggle"].Api.Enabled then 
+							if bedwars.matchState == 0 then return end
+						end
+						if entityLibrary.isAlive then
+							entityLibrary.character.HumanoidRootPart.Velocity = Vector3.zero
+							entityLibrary.character.HumanoidRootPart.CFrame = startCFrame
+						end
 					end)
 				else
-					warningNotification("GrappleExploit", "missing grapple hook", 3)
-					GrappleExploit.ToggleButton(false)
-					return
+					GrappleExploitUp = false
+					GrappleExploitDown = false
+					RunLoops:UnbindFromHeartbeat("GrappleExploit")
 				end
-
-				local startCFrame = entityLibrary.isAlive and entityLibrary.character.HumanoidRootPart.CFrame
-				RunLoops:BindToHeartbeat("GrappleExploit", function(delta) 
-					if GuiLibrary.ObjectsThatCanBeSaved["Lobby CheckToggle"].Api.Enabled then 
-						if bedwars.matchState == 0 then return end
-					end
-					if entityLibrary.isAlive then
-						entityLibrary.character.HumanoidRootPart.Velocity = Vector3.zero
-						entityLibrary.character.HumanoidRootPart.CFrame = startCFrame
-					end
-				end)
-			else
-				GrappleExploitUp = false
-				GrappleExploitDown = false
-				RunLoops:UnbindFromHeartbeat("GrappleExploit")
 			end
 		end,
 		HoverText = "Makes you go zoom (longer GrappleExploit discovered by exelys and Cqded)",

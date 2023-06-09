@@ -5731,7 +5731,7 @@ runFunction(function()
 	local skyatmosphereobj
 	local oldobjects = {}
 	Atmosphere = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
-		Name = "Atmosphere",
+		Name = "Sky",
 		Function = function(callback)
 			if callback then 
 				for i,v in pairs(lightingService:GetChildren()) do 
@@ -5844,7 +5844,7 @@ runFunction(function()
 		end
 	})
 	SkyColor = Atmosphere.CreateColorSlider({
-		Name = "Color",
+		Name = "SkyColor",
 		Function = function(h, s, v)
 			if skyatmosphereobj then 
 				skyatmosphereobj.TintColor = Color3.fromHSV(SkyColor.Hue, SkyColor.Sat, SkyColor.Value)

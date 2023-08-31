@@ -1,0 +1,21 @@
+runFunction(function()
+    BetterScythe = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+        Name = "ScytheBypass",
+        Function = function(callback)
+            if callback then
+                task.spawn(function()
+                    repeat
+                        task.wait(0.03)
+                        local args = {
+                            [1] = {
+                                ["direction"] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector
+                            }
+                        }
+
+                        game:GetService("ReplicatedStorage").rbxts_include.node_modules["@rbxts"].net.out._NetManaged.ScytheDash:FireServer(unpack(args))
+                        until (not BetterScythe.Enabled)
+                    end)
+            end
+        end
+    })
+end)

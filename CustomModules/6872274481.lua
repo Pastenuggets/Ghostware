@@ -10001,7 +10001,25 @@ runFunction(function()
 		HoverText = "Float disabler with scythe"
     })
 end)
-
+runFunction(function()
+		local InstaKill = {Enabled = false}
+		InstaKill = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+			Name = "InstantKill",
+			Function = function(callback)
+				if callback then 
+					task.spawn(function()
+						repeat task.wait() 
+							bedwars.ClientHandler:Get("RequestGauntletsChargedAttack"):SendToServer({
+								region = Region3.new(Vector3.new(math.huge, math.huge, math.huge), Vector3.new(math.huge, math.huge, math.huge)), 
+								blockDestroyTime = 0.1,
+								unitLookVector = lplr.Character and lplr.Character.PrimaryPart and lplr.Character.HumanoidRootPart.CFrame.LookVector or Vector3.new(0, 0, 0)
+							})
+						until not InstaKill.Enabled
+					end)
+				end
+			end
+		})
+	end)
 runFunction(function()
 	bedwarsStore.TPString = shared.vapeoverlay or nil
 	local origtpstring = bedwarsStore.TPString

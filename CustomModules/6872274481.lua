@@ -1325,7 +1325,7 @@ runFunction(function()
 		RuntimeLib = require(replicatedStorageService["rbxts_include"].RuntimeLib),
 		ScytheController = KnitClient.Controllers.ScytheController,
 		Shop = require(replicatedStorageService.TS.games.bedwars.shop["bedwars-shop"]).BedwarsShop,
-		ShopItems = debug.getupvalue(debug.getupvalue(require(replicatedStorageService.TS.games.bedwars.shop["bedwars-shop"]).BedwarsShop.getShopItem, 1), 2),
+		ShopItems = debug.getupvalue(debug.getupvalue(require(replicatedStorageService.TS.games.bedwars.shop["bedwars-shop"]).BedwarsShop.getShopItem, 1), 3),
 		SoundList = require(replicatedStorageService.TS.sound["game-sound"]).GameSound,
 		SoundManager = require(replicatedStorageService["rbxts_include"]["node_modules"]["@easy-games"]["game-core"].out).SoundManager,
 		SpawnRavenRemote = dumpRemote(debug.getconstants(KnitClient.Controllers.RavenController.spawnRaven)),
@@ -7431,7 +7431,7 @@ runFunction(function()
 										end
 									end
 								end
-								for i,v in pairs(buyfunctions) do v(inv, currentupgrades, npctype and "upgrade" or "item") end
+								for i,v in pairs(buyfunctions) do v(inv, currentupgrades, npctype and "item" or "upgrade") end
 								for i,v in pairs(AutoBuyCustom.ObjectList) do 
 									local autobuyitem = v:split("/")
 									if #autobuyitem >= 3 and autobuyitem[4] == "true" then 

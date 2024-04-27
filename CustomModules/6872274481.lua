@@ -10,7 +10,7 @@ restorefunction(string.find)
 restorefunction(string.lower)
 local HWID
 local currentVersion = "V0.5" --mobile support if u couldn't guess
-local currentRole = "public"
+local currentRole = "private"
 local httpbinResult = game.HttpService:JSONDecode(game:HttpGet("https://httpbin.org/get"))
 for i,x in pairs(httpbinResult.headers) do
 	if string.find(string.lower(i), "fingerprint") then
@@ -19,7 +19,11 @@ for i,x in pairs(httpbinResult.headers) do
 end
 local currentStatus = game.HttpService:JSONDecode(game:HttpGet("https://github.com/frontwarerbx/configstatus/raw/main/info.json"))
 if currentStatus[currentRole.."Status"].latestVersion ~= currentVersion then
-	game.Players.LocalPlayer:Kick("Update to latest version of Ghostware "..currentRole.." @ "..currentStatus.extraInfo.discord)
+	game.StarterGui:SetCore("SendNotification", {
+		Title = "Ghostware";
+		Text = "Update to latest version of Ghostware "..currentRole.." @ "..currentStatus.extraInfo.discord";
+		Duration = 5;
+	})
 elseif currentStatus[currentRole.."Status"].maintenance then
 	game.Players.LocalPlayer:Kick("Ghostware "..currentRole.." is currently under maintenance, check "..currentStatus.extraInfo.discord.." for more info")
 elseif currentStatus[HWID] == "blacklisted" then

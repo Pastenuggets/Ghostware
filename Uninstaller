@@ -27,3 +27,33 @@ game:GetService('StarterGui'):SetCore('SendNotification', ({
 }))
 wait(1)
 game.Players.LocalPlayer:Kick("Ghostware has been uninstalled.")
+--vapeprivate
+if not isfolder('vapeprivate') then 
+    return game:GetService('StarterGui'):SetCore('SendNotification', ({
+        Title = 'Ghostware', 
+        Text = 'No installation detected, not installed.',
+        Duration = 20
+    }))  
+end
+
+delfolder('vapeprivate')
+
+for i,v in next, listfiles('vapeprivate/CustomModules') do 
+    if isfile('vapeprivate/CustomModules/'..v) then 
+        delfolder('vapeprivate/CustomModules/'..v) 
+    end
+end
+
+for i,v in next, ({'GuiLibrary.lua', 'MainScript.lua', 'NewMainScript.lua'}) do 
+    if isfile('vapeprivate/'..v) then 
+        delfolder('vapeprivate/'..v) 
+    end 
+end
+
+game:GetService('StarterGui'):SetCore('SendNotification', ({
+    Title = 'Ghostware', 
+    Text = 'Successfully uninstalled Ghostware.',
+    Duration = 20
+}))
+wait(1)
+game.Players.LocalPlayer:Kick("Ghostware has been uninstalled.")

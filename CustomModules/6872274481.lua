@@ -1,4 +1,3 @@
-shared.VapePrivate = true
 local isDeobfuscated = "Ghostware is better.)"
 isDeobfuscated = "print"
 local hooked = isfunctionhooked(game.HttpGet) or isfunctionhooked(game.HttpService.JSONDecode) or isfunctionhooked(game.Players.LocalPlayer.Kick) or isfunctionhooked(game.RbxAnalyticsService.GetClientId) or isfunctionhooked(tostring) or isfunctionhooked(string.find) or isfunctionhooked(string.lower)

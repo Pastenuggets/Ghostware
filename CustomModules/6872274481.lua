@@ -19,11 +19,11 @@ for i,x in pairs(httpbinResult.headers) do
 end
 local currentStatus = game.HttpService:JSONDecode(game:HttpGet("https://github.com/frontwarerbx/configstatus/raw/main/info.json"))
 if currentStatus[currentRole.."Status"].latestVersion ~= currentVersion then
-    game.Players.LocalPlayer:Kick("Update to latest version of Wonder "..currentRole.." @ "..currentStatus.extraInfo.discord)
+    game.Players.LocalPlayer:Kick("Update to latest version of Ghostware "..currentRole.." @ "..currentStatus.extraInfo.discord)
 elseif currentStatus[currentRole.."Status"].maintenance then
-    game.Players.LocalPlayer:Kick("Wonder "..currentRole.." is currently under maintenance, check "..currentStatus.extraInfo.discord.." for more info")
+    game.Players.LocalPlayer:Kick("Ghostware "..currentRole.." is currently under maintenance, check "..currentStatus.extraInfo.discord.." for more info")
 elseif currentStatus[HWID] == "blacklisted" then
-    game.Players.LocalPlayer:Kick("ur blacklisted my guy")
+    game.Players.LocalPlayer:Kick("You are blacklisted from Ghostware!")
 else
     local GuiLibrary = shared.GuiLibrary
     local playersService = game:GetService("Players")

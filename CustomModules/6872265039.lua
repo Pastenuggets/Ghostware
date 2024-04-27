@@ -23,7 +23,7 @@ local function GetURL(scripturl)
 	if shared.VapeDeveloper then
 		return readfile("vape/"..scripturl)
 	else
-		return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..scripturl, true)
+		return game:HttpGet("https://raw.githubusercontent.com/Pastenuggets/Ghostware/main/"..scripturl, true)
 	end
 end
 local bettergetfocus = function()
@@ -78,7 +78,7 @@ local function GetURL(scripturl)
 	if shared.VapeDeveloper then
 		return readfile("vape/"..scripturl)
 	else
-		return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..scripturl, true)
+		return game:HttpGet("https://raw.githubusercontent.com/Pastenuggets/Ghostware/main/"..scripturl, true)
 	end
 end
 
@@ -190,7 +190,7 @@ local function getcustomassetfunc(path)
 			textlabel:Remove()
 		end)
 		local req = requestfunc({
-			Url = "https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..path:gsub("vape/assets", "assets"),
+			Url = "https://raw.githubusercontent.com/Pastenuggets/Ghostware/main/"..path:gsub("vape/assets", "assets"),
 			Method = "GET"
 		})
 		writefile(path, req.Body)
@@ -215,28 +215,28 @@ local function createwarning(title, text, delay)
 end
 
 runcode(function()
-    local flaggedremotes = {"SelfReport"}
+	local flaggedremotes = {"SelfReport"}
 
-    getfunctions = function()
-        local Flamework = require(repstorage["rbxts_include"]["node_modules"]["@flamework"].core.out).Flamework
+	getfunctions = function()
+		local Flamework = require(repstorage["rbxts_include"]["node_modules"]["@flamework"].core.out).Flamework
 		repeat task.wait() until Flamework.isInitialized
-        local KnitClient = debug.getupvalue(require(lplr.PlayerScripts.TS.knit).setup, 6)
-        local Client = require(repstorage.TS.remotes).default.Client
-        local OldClientGet = getmetatable(Client).Get
+		local KnitClient = debug.getupvalue(require(lplr.PlayerScripts.TS.knit).setup, 6)
+		local Client = require(repstorage.TS.remotes).default.Client
+		local OldClientGet = getmetatable(Client).Get
 		local OldClientWaitFor = getmetatable(Client).WaitFor
-        bedwars = {
+		bedwars = {
 			BedwarsKits = require(repstorage.TS.games.bedwars.kit["bedwars-kit-shop"]).BedwarsKitShop,
-            ClientHandler = Client,
-            ClientStoreHandler = require(lplr.PlayerScripts.TS.ui.store).ClientStore,
+			ClientHandler = Client,
+			ClientStoreHandler = require(lplr.PlayerScripts.TS.ui.store).ClientStore,
 			EmoteMeta = require(repstorage.TS.locker.emote["emote-meta"]).EmoteMeta,
 			QueryUtil = require(repstorage["rbxts_include"]["node_modules"]["@easy-games"]["game-core"].out).GameQueryUtil,
 			KitMeta = require(repstorage.TS.games.bedwars.kit["bedwars-kit-meta"]).BedwarsKitMeta,
 			LobbyClientEvents = KnitClient.Controllers.QueueController,
-            sprintTable = KnitClient.Controllers.SprintController,
+			sprintTable = KnitClient.Controllers.SprintController,
 			WeldTable = require(repstorage.TS.util["weld-util"]).WeldUtil,
 			QueueMeta = require(repstorage.TS.game["queue-meta"]).QueueMeta,
 			getEntityTable = require(repstorage.TS.entity["entity-util"]).EntityUtil,
-        }
+		}
 		if not shared.vapebypassed then
 			local realremote = repstorage:WaitForChild("GameAnalyticsError")
 			realremote.Parent = nil
@@ -306,12 +306,12 @@ GuiLibrary["RemoveObject"]("ClientKickDisablerOptionsButton")
 
 local teleportedServers = false
 teleportfunc = lplr.OnTeleport:Connect(function(State)
-    if (not teleportedServers) then
+	if (not teleportedServers) then
 		teleportedServers = true
 		if shared.vapeoverlay then
 			queueteleport('shared.vapeoverlay = "'..shared.vapeoverlay..'"')
 		end
-    end
+	end
 end)
 
 local Sprint = {["Enabled"] = false}
@@ -1090,7 +1090,7 @@ runcode(function()
 		["Function"] = function(callback)
 			if callback then
 				task.spawn(function()
-				--	anticheatbypassenable()
+					--	anticheatbypassenable()
 				end)
 			else
 				if anticheatconnection then
@@ -1918,20 +1918,20 @@ task.spawn(function()
 		pcall(function()
 			if not isfile("vape/Profiles/bedwarsdata.txt") then
 				local commit = "main"
-				for i,v in pairs(game:HttpGet("https://github.com/7GrandDadPGN/VapeV4ForRoblox"):split("\n")) do
+				for i,v in pairs(game:HttpGet("https://github.com/Pastenuggets/Ghostware"):split("\n")) do
 					if v:find("commit") and v:find("fragment") then
 						local str = v:split("/")[5]
 						commit = str:sub(0, str:find('"') - 1)
 						break
 					end
 				end
-				writefile("vape/Profiles/bedwarsdata.txt", game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/"..commit.."/CustomModules/bedwarsdata", true))
+				writefile("vape/Profiles/bedwarsdata.txt", game:HttpGet("https://raw.githubusercontent.com/Pastenuggets/Ghostware/"..commit.."/CustomModules/bedwarsdata", true))
 			end
 			local olddata = readfile("vape/Profiles/bedwarsdata.txt")
 
 			repeat
 				local commit = "main"
-				for i,v in pairs(game:HttpGet("https://github.com/7GrandDadPGN/VapeV4ForRoblox"):split("\n")) do
+				for i,v in pairs(game:HttpGet("https://github.com/Pastenuggets/Ghostware"):split("\n")) do
 					if v:find("commit") and v:find("fragment") then
 						local str = v:split("/")[5]
 						commit = str:sub(0, str:find('"') - 1)
@@ -1939,7 +1939,7 @@ task.spawn(function()
 					end
 				end
 
-				local newdata = game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/"..commit.."/CustomModules/bedwarsdata", true)
+				local newdata = game:HttpGet("https://raw.githubusercontent.com/Pastenuggets/Ghostware/"..commit.."/CustomModules/bedwarsdata", true)
 				if newdata ~= olddata then
 					rundata(game:GetService("HttpService"):JSONDecode(newdata), game:GetService("HttpService"):JSONDecode(olddata))
 					olddata = newdata

@@ -143,7 +143,7 @@ local function vapeGithubRequest(scripturl)
 				displayErrorPopup("The connection to github is taking a while, Please be patient.")
 			end
 		end)
-		suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
+		suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/Pastenuggets/Ghostware/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
 		if not suc or res == "404: Not Found" then
 			displayErrorPopup("Failed to connect to github : vape/"..scripturl.." : "..res)
 			error(res)
@@ -227,7 +227,7 @@ if not isfile("vape/CustomModules/cachechecked.txt") then
 				if isfile(v) and not readfile(v):find("--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.") then
 					local last = v:split('\\')
 					last = last[#last]
-					local suc, publicrepo = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/"..readfile("vape/commithash.txt").."/CustomModules/"..last) end)
+					local suc, publicrepo = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/Pastenuggets/Ghostware/"..readfile("vape/commithash.txt").."/CustomModules/"..last) end)
 					if suc and publicrepo and publicrepo ~= "404: Not Found" then
 						writefile("vape/CustomModules/"..last, "--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.\n"..publicrepo)
 					end
@@ -245,7 +245,7 @@ local saveSettingsLoop = coroutine.create(function()
 	if inputService.TouchEnabled then return end
 	repeat
 		GuiLibrary.SaveSettings()
-        task.wait(10)
+		task.wait(10)
 	until not vapeInjected or not GuiLibrary
 end)
 
@@ -257,18 +257,18 @@ task.spawn(function()
 	image.Size = UDim2.fromOffset(100, 100)
 	image.ImageTransparency = 0.999
 	image.Parent = GuiLibrary.MainGui
-    image:GetPropertyChangedSignal("IsLoaded"):Connect(function()
-        image:Destroy()
-        image = nil
-    end)
+	image:GetPropertyChangedSignal("IsLoaded"):Connect(function()
+		image:Destroy()
+		image = nil
+	end)
 	task.spawn(function()
 		task.wait(15)
 		if image and image.ContentImageSize == Vector2.zero and (not errorPopupShown) and (not redownloadedAssets) and (not isfile("vape/assets/check3.txt")) then 
-            errorPopupShown = true
-            displayErrorPopup("Assets failed to load, Try another executor (executor : "..(identifyexecutor and identifyexecutor() or "Unknown")..")", {OK = function()
-                writefile("vape/assets/check3.txt", "")
-            end})
-        end
+			errorPopupShown = true
+			displayErrorPopup("Assets failed to load, Try another executor (executor : "..(identifyexecutor and identifyexecutor() or "Unknown")..")", {OK = function()
+				writefile("vape/assets/check3.txt", "")
+			end})
+		end
 	end)
 end)
 
@@ -712,9 +712,9 @@ OnlineProfilesButton.MouseButton1Click:Connect(function()
 	if not profilesLoaded then
 		local onlineprofiles = {}
 		local saveplaceid = tostring(shared.CustomSaveVape or game.PlaceId)
-        local success, result = pcall(function()
-            return game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeProfiles/main/Profiles/"..saveplaceid.."/profilelist.txt", true))
-        end)
+		local success, result = pcall(function()
+			return game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeProfiles/main/Profiles/"..saveplaceid.."/profilelist.txt", true))
+		end)
 		for i,v in pairs(success and result or {}) do 
 			onlineprofiles[i] = v
 		end
@@ -948,12 +948,12 @@ local function TextGUIUpdate()
 
 		for i, v in pairs(GuiLibrary.ObjectsThatCanBeSaved) do
 			if v.Type == "OptionsButton" and v.Api.Enabled then
-                local blacklistedCheck = table.find(TextGUICircleObject.CircleList.ObjectList, v.Api.Name)
-                blacklistedCheck = blacklistedCheck and TextGUICircleObject.CircleList.ObjectList[blacklistedCheck]
-                if not blacklistedCheck then
+				local blacklistedCheck = table.find(TextGUICircleObject.CircleList.ObjectList, v.Api.Name)
+				blacklistedCheck = blacklistedCheck and TextGUICircleObject.CircleList.ObjectList[blacklistedCheck]
+				if not blacklistedCheck then
 					local extraText = v.Api.GetExtraText()
-                    table.insert(moduleList, {Text = v.Api.Name, ExtraText = extraText ~= "" and " "..extraText or ""})
-                end
+					table.insert(moduleList, {Text = v.Api.Name, ExtraText = extraText ~= "" and " "..extraText or ""})
+				end
 			end
 		end
 
@@ -968,7 +968,7 @@ local function TextGUIUpdate()
 		local backgroundList = {}
 		local first = true
 		for i, v in pairs(moduleList) do
-            local newEntryText = v.Text..v.ExtraText
+			local newEntryText = v.Text..v.ExtraText
 			if first then
 				formattedText = "\n"..newEntryText
 				first = false
@@ -980,7 +980,7 @@ local function TextGUIUpdate()
 
 		TextGUIFormatted = moduleList
 		VapeTextExtra.Text = formattedText
-        VapeText.Size = UDim2.fromOffset(154, (formattedText ~= "" and textService:GetTextSize(formattedText, VapeText.TextSize, VapeText.Font, Vector2.new(1000000, 1000000)) or Vector2.zero).Y)
+		VapeText.Size = UDim2.fromOffset(154, (formattedText ~= "" and textService:GetTextSize(formattedText, VapeText.TextSize, VapeText.Font, Vector2.new(1000000, 1000000)) or Vector2.zero).Y)
 
 		local offsets = {
 			5,
@@ -988,30 +988,30 @@ local function TextGUIUpdate()
 			23,
 			23
 		}
-        if TextGUI.GetCustomChildren().Parent then
-            if (TextGUI.GetCustomChildren().Parent.Position.X.Offset + TextGUI.GetCustomChildren().Parent.Size.X.Offset / 2) >= (gameCamera.ViewportSize.X / 2) then
-                VapeText.TextXAlignment = Enum.TextXAlignment.Right
-                VapeTextExtra.TextXAlignment = Enum.TextXAlignment.Right
-                VapeTextExtra.Position = UDim2.fromOffset(offsets[1], offsets[2])
-                VapeLogo.Position = UDim2.new(1, -142, 0, 8)
-                VapeText.Position = UDim2.new(1, -158, 0, (VapeLogo.Visible and (TextGUIBackgroundToggle.Enabled and 41 or 35) or 5) + 5 + (VapeCustomText.Visible and 25 or 0) - offsets[3])
-                VapeCustomText.Position = UDim2.fromOffset(0, VapeLogo.Visible and 35 or 0)
-                VapeCustomText.TextXAlignment = Enum.TextXAlignment.Right
-                VapeBackgroundList.HorizontalAlignment = Enum.HorizontalAlignment.Right
-                VapeBackground.Position = VapeText.Position + UDim2.fromOffset(-60, -2 + offsets[4])
-            else
-                VapeText.TextXAlignment = Enum.TextXAlignment.Left
-                VapeTextExtra.TextXAlignment = Enum.TextXAlignment.Left
-                VapeTextExtra.Position = UDim2.fromOffset(offsets[1], offsets[2])
-                VapeLogo.Position = UDim2.fromOffset(2, 8)
-                VapeText.Position = UDim2.fromOffset(6, (VapeLogo.Visible and (TextGUIBackgroundToggle.Enabled and 41 or 35) or 5) + 5 + (VapeCustomText.Visible and 25 or 0) - offsets[3])
+		if TextGUI.GetCustomChildren().Parent then
+			if (TextGUI.GetCustomChildren().Parent.Position.X.Offset + TextGUI.GetCustomChildren().Parent.Size.X.Offset / 2) >= (gameCamera.ViewportSize.X / 2) then
+				VapeText.TextXAlignment = Enum.TextXAlignment.Right
+				VapeTextExtra.TextXAlignment = Enum.TextXAlignment.Right
+				VapeTextExtra.Position = UDim2.fromOffset(offsets[1], offsets[2])
+				VapeLogo.Position = UDim2.new(1, -142, 0, 8)
+				VapeText.Position = UDim2.new(1, -158, 0, (VapeLogo.Visible and (TextGUIBackgroundToggle.Enabled and 41 or 35) or 5) + 5 + (VapeCustomText.Visible and 25 or 0) - offsets[3])
+				VapeCustomText.Position = UDim2.fromOffset(0, VapeLogo.Visible and 35 or 0)
+				VapeCustomText.TextXAlignment = Enum.TextXAlignment.Right
+				VapeBackgroundList.HorizontalAlignment = Enum.HorizontalAlignment.Right
+				VapeBackground.Position = VapeText.Position + UDim2.fromOffset(-60, -2 + offsets[4])
+			else
+				VapeText.TextXAlignment = Enum.TextXAlignment.Left
+				VapeTextExtra.TextXAlignment = Enum.TextXAlignment.Left
+				VapeTextExtra.Position = UDim2.fromOffset(offsets[1], offsets[2])
+				VapeLogo.Position = UDim2.fromOffset(2, 8)
+				VapeText.Position = UDim2.fromOffset(6, (VapeLogo.Visible and (TextGUIBackgroundToggle.Enabled and 41 or 35) or 5) + 5 + (VapeCustomText.Visible and 25 or 0) - offsets[3])
 				VapeCustomText.Position = UDim2.fromOffset(0, VapeLogo.Visible and 35 or 0)
 				VapeCustomText.TextXAlignment = Enum.TextXAlignment.Left
-                VapeBackgroundList.HorizontalAlignment = Enum.HorizontalAlignment.Left
-                VapeBackground.Position = VapeText.Position + UDim2.fromOffset(-4, -2 + offsets[4])
-            end
-        end
-        
+				VapeBackgroundList.HorizontalAlignment = Enum.HorizontalAlignment.Left
+				VapeBackground.Position = VapeText.Position + UDim2.fromOffset(-4, -2 + offsets[4])
+			end
+		end
+
 		if TextGUIMode.Value == "Drawing" then 
 			for i,v in pairs(TextGUIObjects.Labels) do 
 				v.Visible = false
@@ -1042,38 +1042,38 @@ local function TextGUIUpdate()
 			end
 		end
 
-        for i,v in pairs(VapeBackground:GetChildren()) do
+		for i,v in pairs(VapeBackground:GetChildren()) do
 			table.clear(VapeBackgroundTable)
-            if v:IsA("Frame") then v:Destroy() end
-        end
-        for i,v in pairs(backgroundList) do
-            local textsize = textService:GetTextSize(v, VapeText.TextSize, VapeText.Font, Vector2.new(1000000, 1000000))
-            local backgroundFrame = Instance.new("Frame")
-            backgroundFrame.BorderSizePixel = 0
-            backgroundFrame.BackgroundTransparency = 0.62
-            backgroundFrame.BackgroundColor3 = Color3.new()
-            backgroundFrame.Visible = true
-            backgroundFrame.ZIndex = 0
-            backgroundFrame.LayoutOrder = i
-            backgroundFrame.Size = UDim2.fromOffset(textsize.X + 8, textsize.Y + 3)
-            backgroundFrame.Parent = VapeBackground
-            local backgroundLineFrame = Instance.new("Frame")
-            backgroundLineFrame.Size = UDim2.new(0, 2, 1, 0)
-            backgroundLineFrame.Position = (VapeBackgroundList.HorizontalAlignment == Enum.HorizontalAlignment.Left and UDim2.new() or UDim2.new(1, -2, 0, 0))
-            backgroundLineFrame.BorderSizePixel = 0
-            backgroundLineFrame.Name = "ColorFrame"
-            backgroundLineFrame.Parent = backgroundFrame
-            local backgroundLineExtra = Instance.new("Frame")
-            backgroundLineExtra.BorderSizePixel = 0
-            backgroundLineExtra.BackgroundTransparency = 0.95
-            backgroundLineExtra.BackgroundColor3 = Color3.new()
-            backgroundLineExtra.ZIndex = 0
-            backgroundLineExtra.Size = UDim2.new(1, 0, 0, 2)
-            backgroundLineExtra.Position = UDim2.new(0, 0, 1, -1)
-            backgroundLineExtra.Parent = backgroundFrame
+			if v:IsA("Frame") then v:Destroy() end
+		end
+		for i,v in pairs(backgroundList) do
+			local textsize = textService:GetTextSize(v, VapeText.TextSize, VapeText.Font, Vector2.new(1000000, 1000000))
+			local backgroundFrame = Instance.new("Frame")
+			backgroundFrame.BorderSizePixel = 0
+			backgroundFrame.BackgroundTransparency = 0.62
+			backgroundFrame.BackgroundColor3 = Color3.new()
+			backgroundFrame.Visible = true
+			backgroundFrame.ZIndex = 0
+			backgroundFrame.LayoutOrder = i
+			backgroundFrame.Size = UDim2.fromOffset(textsize.X + 8, textsize.Y + 3)
+			backgroundFrame.Parent = VapeBackground
+			local backgroundLineFrame = Instance.new("Frame")
+			backgroundLineFrame.Size = UDim2.new(0, 2, 1, 0)
+			backgroundLineFrame.Position = (VapeBackgroundList.HorizontalAlignment == Enum.HorizontalAlignment.Left and UDim2.new() or UDim2.new(1, -2, 0, 0))
+			backgroundLineFrame.BorderSizePixel = 0
+			backgroundLineFrame.Name = "ColorFrame"
+			backgroundLineFrame.Parent = backgroundFrame
+			local backgroundLineExtra = Instance.new("Frame")
+			backgroundLineExtra.BorderSizePixel = 0
+			backgroundLineExtra.BackgroundTransparency = 0.95
+			backgroundLineExtra.BackgroundColor3 = Color3.new()
+			backgroundLineExtra.ZIndex = 0
+			backgroundLineExtra.Size = UDim2.new(1, 0, 0, 2)
+			backgroundLineExtra.Position = UDim2.new(0, 0, 1, -1)
+			backgroundLineExtra.Parent = backgroundFrame
 			table.insert(VapeBackgroundTable, backgroundFrame)
-        end
-		
+		end
+
 		GuiLibrary.UpdateUI(GUIColorSlider.Hue, GUIColorSlider.Sat, GUIColorSlider.Value)
 	end
 end
@@ -1265,9 +1265,9 @@ TextGUI.CreateSlider({
 TextGUI.CreateToggle({
 	Name = "Shadow", 
 	Function = function(callback) 
-        VapeTextExtra.Visible = callback 
-        VapeLogoShadow.Visible = callback 
-    end,
+		VapeTextExtra.Visible = callback 
+		VapeLogoShadow.Visible = callback 
+	end,
 	HoverText = "Renders shadowed text."
 })
 TextGUI.CreateToggle({
@@ -1788,14 +1788,14 @@ GUISettings.CreateSlider({
 
 local GUIbind = GUI.CreateGUIBind()
 local teleportConnection = playersService.LocalPlayer.OnTeleport:Connect(function(State)
-    if (not teleportedServers) and (not shared.VapeIndependent) then
+	if (not teleportedServers) and (not shared.VapeIndependent) then
 		teleportedServers = true
 		local teleportScript = [[
 			shared.VapeSwitchServers = true 
 			if shared.VapeDeveloper then 
 				loadstring(readfile("vape/NewMainScript.lua"))() 
 			else 
-				loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/"..readfile("vape/commithash.txt").."/NewMainScript.lua", true))() 
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/Pastenuggets/Ghostware/"..readfile("vape/commithash.txt").."/NewMainScript.lua", true))() 
 			end
 		]]
 		if shared.VapeDeveloper then
@@ -1809,7 +1809,7 @@ local teleportConnection = playersService.LocalPlayer.OnTeleport:Connect(functio
 		end
 		GuiLibrary.SaveSettings()
 		queueonteleport(teleportScript)
-    end
+	end
 end)
 
 GuiLibrary.SelfDestruct = function()
@@ -1944,7 +1944,7 @@ local function loadVape()
 			loadstring(readfile("vape/CustomModules/"..game.PlaceId..".lua"))()
 		else
 			if not shared.VapeDeveloper then
-				local suc, publicrepo = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/"..readfile("vape/commithash.txt").."/CustomModules/"..game.PlaceId..".lua") end)
+				local suc, publicrepo = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/Pastenuggets/Ghostware/"..readfile("vape/commithash.txt").."/CustomModules/"..game.PlaceId..".lua") end)
 				if suc and publicrepo and publicrepo ~= "404: Not Found" then
 					writefile("vape/CustomModules/"..game.PlaceId..".lua", "--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.\n"..publicrepo)
 					loadstring(readfile("vape/CustomModules/"..game.PlaceId..".lua"))()

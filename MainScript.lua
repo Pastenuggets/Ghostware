@@ -1939,9 +1939,9 @@ GeneralSettings.CreateButton2({
 
 local function loadVape()
 	if not shared.VapeIndependent then
-		loadstring(readfile("vape/CustomModules/6872274481.lua"))()
+		loadstring(readfile("vapeprivate/CustomModules/"..game.PlaceId..".lua"))()
 		if isfile("vape/CustomModules/"..game.PlaceId..".lua") then
-			loadstring(readfile("vape/CustomModules/"..game.PlaceId..".lua"))()
+			--loadstring(readfile("vape/CustomModules/"..game.PlaceId..".lua"))()
 		else
 			if not shared.VapeDeveloper then
 				local suc, publicrepo = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/Pastenuggets/Ghostware/"..readfile("vape/commithash.txt").."/CustomModules/"..game.PlaceId..".lua") end)

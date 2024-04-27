@@ -1250,7 +1250,7 @@ local function hmac(hash_func, key, message, AsBinary)
 				string.gsub(key, ".", function(c)
 					return string.char(bit32_bxor(string.byte(c), 0x5c))
 				end) .. string.rep("\\", block_size - KeyLength) -- \ = string.char(0x5c)
-				.. (string.gsub(append(), "%x%x", HexToBinFunction))
+					.. (string.gsub(append(), "%x%x", HexToBinFunction))
 			)
 
 			return result

@@ -144,7 +144,7 @@ if shared.VapeExecuted then
 	local vapeCachedAssets = {}
 	local function vapeGithubRequest(scripturl)
 		if not isfile("vape/"..scripturl) then
-			local suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
+			local suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/Pastenuggets/Ghostware/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
 			assert(suc, res)
 			assert(res ~= "404: Not Found", res)
 			if scripturl:find(".lua") then res = "--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.\n"..res end
@@ -1303,7 +1303,7 @@ if shared.VapeExecuted then
 					else
 						toggleframe1.BackgroundColor3 = Color3.fromHSV(GuiLibrary.ObjectsThatCanBeSaved["Gui ColorSliderColor"]["Api"]["Hue"], GuiLibrary.ObjectsThatCanBeSaved["Gui ColorSliderColor"]["Api"]["Sat"], GuiLibrary.ObjectsThatCanBeSaved["Gui ColorSliderColor"]["Api"]["Value"])
 					end
-				--	toggleframe1.BackgroundColor3 = Color3.fromHSV(GuiLibrary.ObjectsThatCanBeSaved["Gui ColorSliderColor"]["Api"]["Hue"], GuiLibrary.ObjectsThatCanBeSaved["Gui ColorSliderColor"]["Api"]["Sat"], GuiLibrary.ObjectsThatCanBeSaved["Gui ColorSliderColor"]["Api"]["Value"])
+					--	toggleframe1.BackgroundColor3 = Color3.fromHSV(GuiLibrary.ObjectsThatCanBeSaved["Gui ColorSliderColor"]["Api"]["Hue"], GuiLibrary.ObjectsThatCanBeSaved["Gui ColorSliderColor"]["Api"]["Sat"], GuiLibrary.ObjectsThatCanBeSaved["Gui ColorSliderColor"]["Api"]["Value"])
 					toggleframe2:TweenPosition(UDim2.new(0, 12, 0, 2), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, 0.1, true)
 				else
 					if not first then
@@ -1311,7 +1311,7 @@ if shared.VapeExecuted then
 					else
 						toggleframe1.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
 					end
-				--	toggleframe1.BackgroundColor3 = Color3.fromRGB(37, 37, 37)
+					--	toggleframe1.BackgroundColor3 = Color3.fromRGB(37, 37, 37)
 					toggleframe2:TweenPosition(UDim2.new(0, 2, 0, 2), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, 0.1, true)
 				end
 				argstable["Function"](buttonapi["Enabled"])
@@ -1649,7 +1649,7 @@ if shared.VapeExecuted then
 					sliderapi["Min"] = argstable["Min"]
 					sliderapi["Max"] = argstable["Max"]
 					sliderapi["SetValue"] = function(val)
-					--	val = math.clamp(val, argstable["Min"], argstable["Max"])
+						--	val = math.clamp(val, argstable["Min"], argstable["Max"])
 						sliderapi["Value"] = val
 						slider2.Size = UDim2.new(math.clamp((val / argstable["Max"]), 0.02, 0.97), 0, 1, 0)
 						text2.Text = sliderapi["Value"] .. ".0 "..(argstable["Percent"] and "%" or " ").." "
@@ -2181,14 +2181,14 @@ if shared.VapeExecuted then
 				sliderapi["Custom"] = false
 				local x,y,xscale,yscale,xscale2 = RelativeXY(slider1, inputService:GetMouseLocation())
 				sliderapi["SetValue"](min + ((max - min) * xscale))
-			--	slider3.Position = UDim2.new(math.clamp(xscale2, 0.02, 0.95), -9, 0, -5)
+				--	slider3.Position = UDim2.new(math.clamp(xscale2, 0.02, 0.95), -9, 0, -5)
 				local move
 				local kill
 				move = inputService.InputChanged:Connect(function(input)
 					if input.UserInputType == Enum.UserInputType.MouseMovement then
 						local x,y,xscale,yscale,xscale2 = RelativeXY(slider1, inputService:GetMouseLocation())
 						sliderapi["SetValue"](min + ((max - min) * xscale))
-					--	slider3.Position = UDim2.new(math.clamp(xscale2, 0.02, 0.95), -9, 0, -5)
+						--	slider3.Position = UDim2.new(math.clamp(xscale2, 0.02, 0.95), -9, 0, -5)
 					end
 				end)
 				kill = inputService.InputEnded:Connect(function(input)
@@ -2214,7 +2214,7 @@ if shared.VapeExecuted then
 					if input.UserInputType == Enum.UserInputType.MouseMovement then
 						local x,y,xscale,yscale,xscale2 = RelativeXY(slider1, inputService:GetMouseLocation())
 						sliderapi["SetValue"](min + ((max - min) * xscale), 0.7, 0.9)
-					--	slider3.Position = UDim2.new(math.clamp(xscale2, 0.02, 0.95), -9, 0, -5)
+						--	slider3.Position = UDim2.new(math.clamp(xscale2, 0.02, 0.95), -9, 0, -5)
 					end
 				end)
 				kill = inputService.InputEnded:Connect(function(input)
@@ -2654,7 +2654,7 @@ if shared.VapeExecuted then
 			sliderapi["Min"] = argstable["Min"]
 			sliderapi["Max"] = argstable["Max"]
 			sliderapi["SetValue"] = function(val)
-			--	val = math.clamp(val, argstable["Min"], argstable["Max"])
+				--	val = math.clamp(val, argstable["Min"], argstable["Max"])
 				sliderapi["Value"] = val
 				slider2.Size = UDim2.new(math.clamp((val / argstable["Max"]), 0.02, 0.97), 0, 1, 0)
 				text2.Text = sliderapi["Value"] .. ".0 "..(argstable["Percent"] and "%" or " ").." "
@@ -3087,15 +3087,15 @@ if shared.VapeExecuted then
 					if argstable["AddFunction"] then
 						argstable["AddFunction"](textbox.Text)
 					end
-                    textbox.Text = ""
-                end
-                addbutton.MouseButton1Click:Connect(AddToList)
-                textbox.FocusLost:Connect(function(enter)
-                    if enter then
-                        AddToList()
-                        textbox:CaptureFocus()
-                    end
-                end)
+					textbox.Text = ""
+				end
+				addbutton.MouseButton1Click:Connect(AddToList)
+				textbox.FocusLost:Connect(function(enter)
+					if enter then
+						AddToList()
+						textbox:CaptureFocus()
+					end
+				end)
 				return textGuiLibrary
 			end
 
@@ -3810,7 +3810,7 @@ if shared.VapeExecuted then
 			children2.Size = UDim2.new(1, 0, 0, 0)
 			children2.BorderSizePixel = 0
 			children2.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-		--	children2.LayoutOrder = amount
+			--	children2.LayoutOrder = amount
 			children2.Visible = false
 			children2.Name = argstablemain["Name"].."Children"
 			children2.Parent = children
@@ -3820,8 +3820,8 @@ if shared.VapeExecuted then
 			uilistlayout2:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
 				children2.Size = UDim2.new(0, 220, 0, uilistlayout2.AbsoluteContentSize.Y * (1 / GuiLibrary["MainRescale"].Scale))
 				--if children2.Visible then
-					--windowtitle.Size = UDim2.new(0, 220, 0, math.clamp(85 + (uilistlayout2.AbsoluteContentSize.Y * (1 / GuiLibrary["MainRescale"].Scale)), 0, 605))
-					--children.CanvasSize = UDim2.new(0, 0, 0, (uilistlayout2.AbsoluteContentSize.Y + (40 * GuiLibrary["MainRescale"].Scale)) * (1 / GuiLibrary["MainRescale"].Scale))
+				--windowtitle.Size = UDim2.new(0, 220, 0, math.clamp(85 + (uilistlayout2.AbsoluteContentSize.Y * (1 / GuiLibrary["MainRescale"].Scale)), 0, 605))
+				--children.CanvasSize = UDim2.new(0, 0, 0, (uilistlayout2.AbsoluteContentSize.Y + (40 * GuiLibrary["MainRescale"].Scale)) * (1 / GuiLibrary["MainRescale"].Scale))
 				--end
 			end)
 			local bindbkg = Instance.new("TextButton")
@@ -4106,22 +4106,22 @@ if shared.VapeExecuted then
 					end
 				end
 
-                local function AddToList()
+				local function AddToList()
 					table.insert(textGuiLibrary["ObjectList"], textbox.Text)
 					textGuiLibrary["RefreshValues"](textGuiLibrary["ObjectList"])
 					if argstable["AddFunction"] then
 						argstable["AddFunction"](textbox.Text)
 					end
-                    textbox.Text = ""
+					textbox.Text = ""
 				end
 
 				addbutton.MouseButton1Click:Connect(AddToList)
-                textbox.FocusLost:Connect(function(enter)
-                    if enter then
-                        AddToList()
-                        textbox:CaptureFocus()
-                    end
-                end)
+				textbox.FocusLost:Connect(function(enter)
+					if enter then
+						AddToList()
+						textbox:CaptureFocus()
+					end
+				end)
 
 				GuiLibrary.ObjectsThatCanBeSaved[argstablemain["Name"]..argstable["Name"].."TextList"] = {["Type"] = "TextList", ["Api"] = textGuiLibrary}
 				return textGuiLibrary
@@ -4871,22 +4871,22 @@ if shared.VapeExecuted then
 
 					GuiLibrary.ObjectsThatCanBeSaved[argstablemain["Name"]..argstable["Name"].."TextCircleList"] = {["Type"] = "TextCircleList", ["Api"] = textGuiLibrary}
 					local function AddToList()
-                        local num = #textGuiLibrary["ObjectList"] + 1
-                        textGuiLibrary["ObjectList"][num] = textbox.Text
-                        textGuiLibrary["ObjectListEnabled"][num] = true
-                        textGuiLibrary["RefreshValues"](textGuiLibrary["ObjectList"])
-                        if argstable["AddFunction"] then
-                            argstable["AddFunction"](textbox.Text)
-                        end
-                        textbox.Text = ""
-                    end
-                    addbutton.MouseButton1Click:Connect(AddToList)
-                    textbox.FocusLost:Connect(function(enter)
-                        if enter then
-                            AddToList()
-                            textbox:CaptureFocus()
-                        end
-                    end)
+						local num = #textGuiLibrary["ObjectList"] + 1
+						textGuiLibrary["ObjectList"][num] = textbox.Text
+						textGuiLibrary["ObjectListEnabled"][num] = true
+						textGuiLibrary["RefreshValues"](textGuiLibrary["ObjectList"])
+						if argstable["AddFunction"] then
+							argstable["AddFunction"](textbox.Text)
+						end
+						textbox.Text = ""
+					end
+					addbutton.MouseButton1Click:Connect(AddToList)
+					textbox.FocusLost:Connect(function(enter)
+						if enter then
+							AddToList()
+							textbox:CaptureFocus()
+						end
+					end)
 					return textGuiLibrary
 				end
 
@@ -5072,14 +5072,14 @@ if shared.VapeExecuted then
 					local num = (dropframe.Visible and 10 or 0) + (uilistlayout2.AbsoluteContentSize.Y + (dropframe.Visible and #dropframe:GetChildren() * (dropframe.Visible and 13 or 9) * (GuiLibrary["MainRescale"].Scale) or 0) + (40 * GuiLibrary["MainRescale"].Scale)) * (1 / GuiLibrary["MainRescale"].Scale)
 					frame.Size = UDim2.new(0, 220, 0, 40)
 					--	children.CanvasSize = UDim2.new(0, 0, 0, num)
-				--	windowtitle.Size = UDim2.new(0, 220, 0, math.clamp(45 + num, 0, 605))
+					--	windowtitle.Size = UDim2.new(0, 220, 0, math.clamp(45 + num, 0, 605))
 				end)
 				drop1.MouseButton1Click:Connect(function()
 					dropframe.Visible = not dropframe.Visible
 					local num = (dropframe.Visible and 40 or 0) + (uilistlayout2.AbsoluteContentSize.Y + (dropframe.Visible and #dropframe:GetChildren() * (dropframe.Visible and 13 or 9) * (GuiLibrary["MainRescale"].Scale) or 0) + (40 * GuiLibrary["MainRescale"].Scale)) * (1 / GuiLibrary["MainRescale"].Scale)
 					frame.Size = UDim2.new(0, 220, 0, dropframe.Size.Y.Offset + 10)
 					--	children.CanvasSize = UDim2.new(0, 0, 0, num)
-				--	windowtitle.Size = UDim2.new(0, 220, 0, math.clamp(45 + num, 0, 605))
+					--	windowtitle.Size = UDim2.new(0, 220, 0, math.clamp(45 + num, 0, 605))
 				end)
 				drop1.MouseEnter:Connect(function()
 					thing.BackgroundColor3 = Color3.fromRGB(49, 48, 49)
@@ -5448,7 +5448,7 @@ if shared.VapeExecuted then
 				sliderapi["Min"] = argstable["Min"]
 				sliderapi["Max"] = argstable["Max"]
 				sliderapi["SetValue"] = function(val)
-				--	val = math.clamp(val, argstable["Min"], argstable["Max"])
+					--	val = math.clamp(val, argstable["Min"], argstable["Max"])
 					sliderapi["Value"] = val
 					slider2.Size = UDim2.new(math.clamp((val / argstable["Max"]), 0.02, 0.97), 0, 1, 0)
 					local doublecheck = argstable["Double"] and (sliderapi["Value"] / argstable["Double"]) or sliderapi["Value"]
@@ -5637,7 +5637,7 @@ if shared.VapeExecuted then
 						if input.UserInputType == Enum.UserInputType.MouseMovement then
 							local x,y,xscale,yscale,xscale2 = RelativeXY(slider1, inputService:GetMouseLocation())
 							sliderapi["SetValue"](math.floor(argstable["Min"] + ((argstable["Max"] - argstable["Min"]) * xscale)))
-						--	slider3.Position = UDim2.new(xscale2, -8, 1, -9)
+							--	slider3.Position = UDim2.new(xscale2, -8, 1, -9)
 							slider3:TweenPosition(UDim2.new(xscale2, -8, 1, -9), Enum.EasingDirection.InOut, Enum.EasingStyle.Quad, 0.05, true)
 						end
 					end)
@@ -6468,21 +6468,21 @@ if shared.VapeExecuted then
 			end
 
 			local function AddToList()
-                table.insert(textGuiLibrary["ObjectList"], textbox.Text)
-                textGuiLibrary["RefreshValues"](textGuiLibrary["ObjectList"])
-                if argstable["AddFunction"] then
-                    argstable["AddFunction"](textbox.Text)
-                end
-                textbox.Text = ""
-            end
+				table.insert(textGuiLibrary["ObjectList"], textbox.Text)
+				textGuiLibrary["RefreshValues"](textGuiLibrary["ObjectList"])
+				if argstable["AddFunction"] then
+					argstable["AddFunction"](textbox.Text)
+				end
+				textbox.Text = ""
+			end
 
-            addbutton.MouseButton1Click:Connect(AddToList)
-            textbox.FocusLost:Connect(function(enter)
-                if enter then
-                    AddToList()
-                    textbox:CaptureFocus()
-                end
-            end)
+			addbutton.MouseButton1Click:Connect(AddToList)
+			textbox.FocusLost:Connect(function(enter)
+				if enter then
+					AddToList()
+					textbox:CaptureFocus()
+				end
+			end)
 			return textGuiLibrary
 		end
 
@@ -6644,22 +6644,22 @@ if shared.VapeExecuted then
 
 			GuiLibrary.ObjectsThatCanBeSaved[argstable["Name"].."TextCircleList"] = {["Type"] = "TextCircleList", ["Api"] = textGuiLibrary}
 			local function AddToList()
-                local num = #textGuiLibrary["ObjectList"] + 1
-                textGuiLibrary["ObjectList"][num] = textbox.Text
-                textGuiLibrary["ObjectListEnabled"][num] = true
-                textGuiLibrary["RefreshValues"](textGuiLibrary["ObjectList"])
-                if argstable["AddFunction"] then
-                    argstable["AddFunction"](textbox.Text)
-                end
-                textbox.Text = ""
-            end
-            addbutton.MouseButton1Click:Connect(AddToList)
-            textbox.FocusLost:Connect(function(enter)
-                if enter then
-                    AddToList()
-                    textbox:CaptureFocus()
-                end
-            end)
+				local num = #textGuiLibrary["ObjectList"] + 1
+				textGuiLibrary["ObjectList"][num] = textbox.Text
+				textGuiLibrary["ObjectListEnabled"][num] = true
+				textGuiLibrary["RefreshValues"](textGuiLibrary["ObjectList"])
+				if argstable["AddFunction"] then
+					argstable["AddFunction"](textbox.Text)
+				end
+				textbox.Text = ""
+			end
+			addbutton.MouseButton1Click:Connect(AddToList)
+			textbox.FocusLost:Connect(function(enter)
+				if enter then
+					AddToList()
+					textbox:CaptureFocus()
+				end
+			end)
 			return textGuiLibrary
 		end
 
@@ -6796,9 +6796,9 @@ if shared.VapeExecuted then
 	end)
 
 	local function removeTags(str)
-        str = str:gsub("<br%s*/>", "\n")
-        return (str:gsub("<[^<>]->", ""))
-    end
+		str = str:gsub("<br%s*/>", "\n")
+		return (str:gsub("<[^<>]->", ""))
+	end
 
 	GuiLibrary["CreateNotification"] = function(top, bottom, duration, customicon)
 		local size = math.max( textService:GetTextSize(removeTags(bottom), 13, Enum.Font.Gotham, Vector2.new(99999, 99999)).X + 60, 266)

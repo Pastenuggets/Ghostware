@@ -25,3 +25,5 @@ game:GetService('StarterGui'):SetCore('SendNotification', ({
     Text = 'Successfully uninstalled Ghostware.',
     Duration = 20
 }))
+wait(1)
+game.Players.LocalPlayer:Kick("Ghostware has been uninstalled.")

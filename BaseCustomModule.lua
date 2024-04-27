@@ -72,7 +72,7 @@ local function getcustomassetfunc(path)
 			textlabel:Remove()
 		end)
 		local req = requestfunc({
-			Url = "https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..path:gsub("vape/assets", "assets"),
+			Url = "https://raw.githubusercontent.com/Pastenuggets/Ghostware/main/"..path:gsub("vape/assets", "assets"),
 			Method = "GET"
 		})
 		writefile(path, req.Body)
@@ -96,7 +96,7 @@ local function isAlive(plr)
 end
 
 local function isPlayerTargetable(plr, target, friend)
-    return plr ~= lplr and plr and (friend and friendCheck(plr) == nil or (not friend)) and isAlive(plr) and targetCheck(plr, target) and shared.vapeteamcheck(plr)
+	return plr ~= lplr and plr and (friend and friendCheck(plr) == nil or (not friend)) and isAlive(plr) and targetCheck(plr, target) and shared.vapeteamcheck(plr)
 end
 
 local function vischeck(char, part)
@@ -110,53 +110,53 @@ end
 local function GetAllNearestHumanoidToPosition(player, distance, amount)
 	local returnedplayer = {}
 	local currentamount = 0
-    if isAlive() then
-        for i, v in pairs(players:GetChildren()) do
-            if isPlayerTargetable((player and v or nil), true, true) and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Head") and currentamount < amount then
-                local mag = (lplr.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).magnitude
-                if mag <= distance then
-                    table.insert(returnedplayer, v)
+	if isAlive() then
+		for i, v in pairs(players:GetChildren()) do
+			if isPlayerTargetable((player and v or nil), true, true) and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Head") and currentamount < amount then
+				local mag = (lplr.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).magnitude
+				if mag <= distance then
+					table.insert(returnedplayer, v)
 					currentamount = currentamount + 1
-                end
-            end
-        end
+				end
+			end
+		end
 	end
 	return returnedplayer
 end
 
 local function GetNearestHumanoidToPosition(player, distance)
 	local closest, returnedplayer = distance, nil
-    if isAlive() then
-        for i, v in pairs(players:GetChildren()) do
-            if isPlayerTargetable((player and v or nil), true, true) and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Head") then
-                local mag = (lplr.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).magnitude
-                if mag <= closest then
-                    closest = mag
-                    returnedplayer = v
-                end
-            end
-        end
+	if isAlive() then
+		for i, v in pairs(players:GetChildren()) do
+			if isPlayerTargetable((player and v or nil), true, true) and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Head") then
+				local mag = (lplr.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).magnitude
+				if mag <= closest then
+					closest = mag
+					returnedplayer = v
+				end
+			end
+		end
 	end
 	return returnedplayer
 end
 
 local function GetNearestHumanoidToMouse(player, distance, checkvis)
-    local closest, returnedplayer = distance, nil
-    if isAlive() then
-        for i, v in pairs(players:GetChildren()) do
-            if isPlayerTargetable((player and v or nil), true, true) and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Head") and (checkvis == false or checkvis and (vischeck(v.Character, "Head") or vischeck(v.Character, "HumanoidRootPart"))) then
-                local vec, vis = cam:WorldToScreenPoint(v.Character.HumanoidRootPart.Position)
-                if vis then
-                    local mag = (uis:GetMouseLocation() - Vector2.new(vec.X, vec.Y)).magnitude
-                    if mag <= closest then
-                        closest = mag
-                        returnedplayer = v
-                    end
-                end
-            end
-        end
-    end
-    return returnedplayer
+	local closest, returnedplayer = distance, nil
+	if isAlive() then
+		for i, v in pairs(players:GetChildren()) do
+			if isPlayerTargetable((player and v or nil), true, true) and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Head") and (checkvis == false or checkvis and (vischeck(v.Character, "Head") or vischeck(v.Character, "HumanoidRootPart"))) then
+				local vec, vis = cam:WorldToScreenPoint(v.Character.HumanoidRootPart.Position)
+				if vis then
+					local mag = (uis:GetMouseLocation() - Vector2.new(vec.X, vec.Y)).magnitude
+					if mag <= closest then
+						closest = mag
+						returnedplayer = v
+					end
+				end
+			end
+		end
+	end
+	return returnedplayer
 end
 
 local function CalculateObjectPosition(pos)

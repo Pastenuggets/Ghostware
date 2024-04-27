@@ -10,7 +10,7 @@ restorefunction(string.find)
 restorefunction(string.lower)
 local HWID
 local currentVersion = "V0.5" --mobile support if u couldn't guess
-local currentRole = "private"
+local currentRole = "public"
 local httpbinResult = game.HttpService:JSONDecode(game:HttpGet("https://httpbin.org/get"))
 for i,x in pairs(httpbinResult.headers) do
 	if string.find(string.lower(i), "fingerprint") then

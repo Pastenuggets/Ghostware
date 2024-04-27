@@ -51,7 +51,7 @@ end
 
 local function vapeGithubRequest(scripturl)
 	if not isfile("vape/"..scripturl) then
-		local suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
+		local suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/Pastenuggets/Ghostware/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
 		assert(suc, res)
 		assert(res ~= "404: Not Found", res)
 		if scripturl:find(".lua") then res = "--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.\n"..res end
@@ -77,11 +77,11 @@ local function downloadVapeAsset(path)
 			textlabel:Destroy()
 		end)
 		local suc, req = pcall(function() return vapeGithubRequest(path:gsub("vape/assets", "assets")) end)
-        if suc and req then
-		    writefile(path, req)
-        else
-            return ""
-        end
+		if suc and req then
+			writefile(path, req)
+		else
+			return ""
+		end
 	end
 	if not vapeCachedAssets[path] then vapeCachedAssets[path] = getcustomasset(path) end
 	return vapeCachedAssets[path]
@@ -160,7 +160,7 @@ do
 		if (not lplr.Team) then return true end
 		if (not plr.Team) then return true end
 		if plr.Team ~= lplr.Team then return true end
-        return #plr.Team:GetPlayers() == playersService.NumPlayers
+		return #plr.Team:GetPlayers() == playersService.NumPlayers
 	end
 	entityLibrary.fullEntityRefresh()
 	entityLibrary.LocalPosition = Vector3.zero
@@ -233,17 +233,17 @@ local function EntityNearPosition(distance, checktab)
 		local sortedentities = {}
 		for i, v in pairs(entityLibrary.entityList) do -- loop through playersService
 			if not v.Targetable then continue end
-            if isVulnerable(v) then -- checks
+			if isVulnerable(v) then -- checks
 				local playerPosition = v.RootPart.Position
 				local mag = (entityLibrary.character.HumanoidRootPart.Position - playerPosition).magnitude
 				if checktab.Prediction and mag > distance then
 					mag = (entityLibrary.LocalPosition - playerPosition).magnitude
 				end
-                if mag <= distance then -- mag check
+				if mag <= distance then -- mag check
 					table.insert(sortedentities, {entity = v, Magnitude = v.Target and -1 or mag})
-                end
-            end
-        end
+				end
+			end
+		end
 		table.sort(sortedentities, function(a, b) return a.Magnitude < b.Magnitude end)
 		for i, v in pairs(sortedentities) do
 			if checktab.WallCheck then
@@ -256,19 +256,19 @@ end
 
 local function EntityNearMouse(distance, checktab)
 	checktab = checktab or {}
-    if entityLibrary.isAlive then
+	if entityLibrary.isAlive then
 		local sortedentities = {}
 		local mousepos = inputService.GetMouseLocation(inputService)
 		for i, v in pairs(entityLibrary.entityList) do
 			if not v.Targetable then continue end
-            if isVulnerable(v) then
+			if isVulnerable(v) then
 				local vec, vis = worldtoscreenpoint(v[checktab.AimPart].Position)
 				local mag = (mousepos - Vector2.new(vec.X, vec.Y)).magnitude
-                if vis and mag <= distance then
+				if vis and mag <= distance then
 					table.insert(sortedentities, {entity = v, Magnitude = v.Target and -1 or mag})
-                end
-            end
-        end
+				end
+			end
+		end
 		table.sort(sortedentities, function(a, b) return a.Magnitude < b.Magnitude end)
 		for i, v in pairs(sortedentities) do
 			if checktab.WallCheck then
@@ -276,28 +276,28 @@ local function EntityNearMouse(distance, checktab)
 			end
 			return v.entity
 		end
-    end
+	end
 end
 
 local function AllNearPosition(distance, amount, checktab)
 	local returnedplayer = {}
 	local currentamount = 0
 	checktab = checktab or {}
-    if entityLibrary.isAlive then
+	if entityLibrary.isAlive then
 		local sortedentities = {}
 		for i, v in pairs(entityLibrary.entityList) do
 			if not v.Targetable then continue end
-            if isVulnerable(v) then
+			if isVulnerable(v) then
 				local playerPosition = v.RootPart.Position
 				local mag = (entityLibrary.character.HumanoidRootPart.Position - playerPosition).magnitude
 				if checktab.Prediction and mag > distance then
 					mag = (entityLibrary.LocalPosition - playerPosition).magnitude
 				end
-                if mag <= distance then
+				if mag <= distance then
 					table.insert(sortedentities, {entity = v, Magnitude = mag})
-                end
-            end
-        end
+				end
+			end
+		end
 		table.sort(sortedentities, function(a, b) return a.Magnitude < b.Magnitude end)
 		for i,v in pairs(sortedentities) do
 			if checktab.WallCheck then
@@ -595,13 +595,13 @@ run(function()
 						globalGuiInset = {top = 0}
 					})
 					local screengui = Roact.createElement('ScreenGui', {}, Roact.createElement(a, {
-							localization = tLocalization.new('en-us')
-						}, {Roact.createElement(UIBlox.Style.Provider, {
-								style = {
-									Theme = darktheme,
-									Font = gotham
-								},
-							}, {e})}))
+						localization = tLocalization.new('en-us')
+					}, {Roact.createElement(UIBlox.Style.Provider, {
+						style = {
+							Theme = darktheme,
+							Font = gotham
+						},
+					}, {e})}))
 					Roact.mount(screengui, coreGui)
 				end)
 			end)
@@ -643,10 +643,10 @@ run(function()
 		reveal = function(args)
 			task.delay(0.1, function()
 				if textChatService.ChatVersion == Enum.ChatVersion.TextChatService then
-                    textChatService.ChatInputBarConfiguration.TargetTextChannel:SendAsync('I am using the inhaler client')
-                else
-                    replicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer('I am using the inhaler client', 'All')
-                end
+					textChatService.ChatInputBarConfiguration.TargetTextChannel:SendAsync('I am using the inhaler client')
+				else
+					replicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer('I am using the inhaler client', 'All')
+				end
 			end)
 		end,
 		shutdown = function()
@@ -2067,7 +2067,7 @@ run(function()
 				end)
 			else
 				RunLoops:UnbindFromHeartbeat("Killaura")
-                KillauraNearTarget = false
+				KillauraNearTarget = false
 				vapeTargetInfo.Targets.Killaura = nil
 				for i,v in pairs(KillauraBoxes) do v.Adornee = nil end
 				if KillauraRangeCirclePart then KillauraRangeCirclePart.Parent = nil end
@@ -2121,19 +2121,19 @@ run(function()
 		Function = function() end
 	})
 	KillauraTarget = Killaura.CreateToggle({
-        Name = "Show target",
-        Function = function(callback) end,
+		Name = "Show target",
+		Function = function(callback) end,
 		HoverText = "Shows a red box over the opponent."
-    })
+	})
 	KillauraPrediction = Killaura.CreateToggle({
 		Name = "Prediction",
 		Function = function() end
 	})
 	KillauraFakeAngle = Killaura.CreateToggle({
-        Name = "Face target",
-        Function = function() end,
+		Name = "Face target",
+		Function = function() end,
 		HoverText = "Makes your character face the opponent."
-    })
+	})
 	KillauraRangeCircle = Killaura.CreateToggle({
 		Name = "Range Visualizer",
 		Function = function(callback)
@@ -2763,98 +2763,98 @@ run(function()
 end)
 
 run(function()
-    local ArrowsFolder = Instance.new("Folder")
-    ArrowsFolder.Name = "ArrowsFolder"
-    ArrowsFolder.Parent = GuiLibrary.MainGui
-    local ArrowsFolderTable = {}
-    local ArrowsColor = {Value = 0.44}
-    local ArrowsTeammate = {Enabled = true}
+	local ArrowsFolder = Instance.new("Folder")
+	ArrowsFolder.Name = "ArrowsFolder"
+	ArrowsFolder.Parent = GuiLibrary.MainGui
+	local ArrowsFolderTable = {}
+	local ArrowsColor = {Value = 0.44}
+	local ArrowsTeammate = {Enabled = true}
 
-    local arrowAddFunction = function(plr)
-        if ArrowsTeammate.Enabled and (not plr.Targetable) and (not plr.Friend) then return end
-        local arrowObject = Instance.new("ImageLabel")
-        arrowObject.BackgroundTransparency = 1
-        arrowObject.BorderSizePixel = 0
-        arrowObject.Size = UDim2.new(0, 256, 0, 256)
-        arrowObject.AnchorPoint = Vector2.new(0.5, 0.5)
-        arrowObject.Position = UDim2.new(0.5, 0, 0.5, 0)
-        arrowObject.Visible = false
-        arrowObject.Image = downloadVapeAsset("vape/assets/ArrowIndicator.png")
+	local arrowAddFunction = function(plr)
+		if ArrowsTeammate.Enabled and (not plr.Targetable) and (not plr.Friend) then return end
+		local arrowObject = Instance.new("ImageLabel")
+		arrowObject.BackgroundTransparency = 1
+		arrowObject.BorderSizePixel = 0
+		arrowObject.Size = UDim2.new(0, 256, 0, 256)
+		arrowObject.AnchorPoint = Vector2.new(0.5, 0.5)
+		arrowObject.Position = UDim2.new(0.5, 0, 0.5, 0)
+		arrowObject.Visible = false
+		arrowObject.Image = downloadVapeAsset("vape/assets/ArrowIndicator.png")
 		arrowObject.ImageColor3 = getPlayerColor(plr.Player) or Color3.fromHSV(ArrowsColor.Hue, ArrowsColor.Sat, ArrowsColor.Value)
-        arrowObject.Name = plr.Player.Name
-        arrowObject.Parent = ArrowsFolder
-        ArrowsFolderTable[plr.Player] = {entity = plr, Main = arrowObject}
-    end
+		arrowObject.Name = plr.Player.Name
+		arrowObject.Parent = ArrowsFolder
+		ArrowsFolderTable[plr.Player] = {entity = plr, Main = arrowObject}
+	end
 
-    local arrowRemoveFunction = function(ent)
-        local v = ArrowsFolderTable[ent]
-        ArrowsFolderTable[ent] = nil
-        if v then v.Main:Destroy() end
-    end
+	local arrowRemoveFunction = function(ent)
+		local v = ArrowsFolderTable[ent]
+		ArrowsFolderTable[ent] = nil
+		if v then v.Main:Destroy() end
+	end
 
-    local arrowColorFunction = function(hue, sat, val)
-        local color = Color3.fromHSV(hue, sat, val)
-        for i,v in pairs(ArrowsFolderTable) do
-            v.Main.ImageColor3 = getPlayerColor(v.entity.Player) or color
-        end
-    end
+	local arrowColorFunction = function(hue, sat, val)
+		local color = Color3.fromHSV(hue, sat, val)
+		for i,v in pairs(ArrowsFolderTable) do
+			v.Main.ImageColor3 = getPlayerColor(v.entity.Player) or color
+		end
+	end
 
-    local arrowLoopFunction = function()
-        for i,v in pairs(ArrowsFolderTable) do
-            local rootPos, rootVis = worldtoscreenpoint(v.entity.RootPart.Position)
-            if rootVis then
-                v.Main.Visible = false
-                continue
-            end
-            local camcframeflat = CFrame.new(gameCamera.CFrame.p, gameCamera.CFrame.p + gameCamera.CFrame.lookVector * Vector3.new(1, 0, 1))
-            local pointRelativeToCamera = camcframeflat:pointToObjectSpace(v.entity.RootPart.Position)
-            local unitRelativeVector = (pointRelativeToCamera * Vector3.new(1, 0, 1)).unit
-            local rotation = math.atan2(unitRelativeVector.Z, unitRelativeVector.X)
-            v.Main.Visible = true
-            v.Main.Rotation = math.deg(rotation)
-        end
-    end
+	local arrowLoopFunction = function()
+		for i,v in pairs(ArrowsFolderTable) do
+			local rootPos, rootVis = worldtoscreenpoint(v.entity.RootPart.Position)
+			if rootVis then
+				v.Main.Visible = false
+				continue
+			end
+			local camcframeflat = CFrame.new(gameCamera.CFrame.p, gameCamera.CFrame.p + gameCamera.CFrame.lookVector * Vector3.new(1, 0, 1))
+			local pointRelativeToCamera = camcframeflat:pointToObjectSpace(v.entity.RootPart.Position)
+			local unitRelativeVector = (pointRelativeToCamera * Vector3.new(1, 0, 1)).unit
+			local rotation = math.atan2(unitRelativeVector.Z, unitRelativeVector.X)
+			v.Main.Visible = true
+			v.Main.Rotation = math.deg(rotation)
+		end
+	end
 
-    local Arrows = {Enabled = false}
+	local Arrows = {Enabled = false}
 	Arrows = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
-        Name = "Arrows",
-        Function = function(callback)
-            if callback then
+		Name = "Arrows",
+		Function = function(callback)
+			if callback then
 				table.insert(Arrows.Connections, entityLibrary.entityRemovedEvent:Connect(arrowRemoveFunction))
 				for i,v in pairs(entityLibrary.entityList) do
-                    if ArrowsFolderTable[v.Player] then arrowRemoveFunction(v.Player) end
-                    arrowAddFunction(v)
-                end
-                table.insert(Arrows.Connections, entityLibrary.entityAddedEvent:Connect(function(ent)
-                    if ArrowsFolderTable[ent.Player] then arrowRemoveFunction(ent.Player) end
-                    arrowAddFunction(ent)
-                end))
+					if ArrowsFolderTable[v.Player] then arrowRemoveFunction(v.Player) end
+					arrowAddFunction(v)
+				end
+				table.insert(Arrows.Connections, entityLibrary.entityAddedEvent:Connect(function(ent)
+					if ArrowsFolderTable[ent.Player] then arrowRemoveFunction(ent.Player) end
+					arrowAddFunction(ent)
+				end))
 				table.insert(Arrows.Connections, GuiLibrary.ObjectsThatCanBeSaved.FriendsListTextCircleList.Api.FriendColorRefresh.Event:Connect(function()
-                    arrowColorFunction(ESPColor.Hue, ESPColor.Sat, ESPColor.Value)
-                end))
+					arrowColorFunction(ESPColor.Hue, ESPColor.Sat, ESPColor.Value)
+				end))
 				RunLoops:BindToRenderStep("Arrows", arrowLoopFunction)
-            else
-                RunLoops:UnbindFromRenderStep("Arrows")
+			else
+				RunLoops:UnbindFromRenderStep("Arrows")
 				for i,v in pairs(ArrowsFolderTable) do
-                    arrowRemoveFunction(i)
-                end
-            end
-        end,
-        HoverText = "Draws arrows on screen when entities\nare out of your field of view."
-    })
-    ArrowsColor = Arrows.CreateColorSlider({
-        Name = "Player Color",
-        Function = function(hue, sat, val)
+					arrowRemoveFunction(i)
+				end
+			end
+		end,
+		HoverText = "Draws arrows on screen when entities\nare out of your field of view."
+	})
+	ArrowsColor = Arrows.CreateColorSlider({
+		Name = "Player Color",
+		Function = function(hue, sat, val)
 			if Arrows.Enabled then
 				arrowColorFunction(hue, sat, val)
 			end
 		end,
-    })
-    ArrowsTeammate = Arrows.CreateToggle({
-        Name = "Teammate",
-        Function = function() end,
-        Default = true
-    })
+	})
+	ArrowsTeammate = Arrows.CreateToggle({
+		Name = "Teammate",
+		Function = function() end,
+		Default = true
+	})
 end)
 
 
@@ -5528,10 +5528,10 @@ run(function()
 					end
 					local anim = Instance.new("Animation")
 					local suc, id = pcall(function() return string.match(game:GetObjects("rbxassetid://"..AnimationPlayerBox.Value)[1].AnimationId, "%?id=(%d+)") end)
-                    if not suc then
-                        id = AnimationPlayerBox.Value
-                    end
-                    anim.AnimationId = "rbxassetid://"..id
+					if not suc then
+						id = AnimationPlayerBox.Value
+					end
+					anim.AnimationId = "rbxassetid://"..id
 					local suc, res = pcall(function() playedanim = entityLibrary.character.Humanoid.Animator:LoadAnimation(anim) end)
 					if suc then
 						playedanim.Priority = Enum.AnimationPriority.Action4
@@ -5559,10 +5559,10 @@ run(function()
 					end
 					local anim = Instance.new("Animation")
 					local suc, id = pcall(function() return string.match(game:GetObjects("rbxassetid://"..AnimationPlayerBox.Value)[1].AnimationId, "%?id=(%d+)") end)
-                    if not suc then
-                        id = AnimationPlayerBox.Value
-                    end
-                    anim.AnimationId = "rbxassetid://"..id
+					if not suc then
+						id = AnimationPlayerBox.Value
+					end
+					anim.AnimationId = "rbxassetid://"..id
 					local suc, res = pcall(function() playedanim = entityLibrary.character.Humanoid.Animator:LoadAnimation(anim) end)
 					if suc then
 						playedanim.Priority = Enum.AnimationPriority.Action4

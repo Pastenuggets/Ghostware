@@ -1,11 +1,27 @@
-if getgenv and not getgenv().shared then getgenv().shared = {} end
-local errorPopupShown = false
-local setidentity = syn and syn.set_thread_identity or set_thread_identity or setidentity or setthreadidentity or function() end
-local getidentity = syn and syn.get_thread_identity or get_thread_identity or getidentity or getthreadidentity or function() return 8 end
-local isfile = isfile or function(file)
-	local suc, res = pcall(function() return readfile(file) end)
-	return suc and res ~= nil
+if not isfolder('vape') then 
+    return game:GetService('StarterGui'):SetCore('SendNotification', ({
+        Title = 'Ghostware', 
+        Text = 'No installation detected, not installed.',
+        Duration = 20
+    }))  
 end
-local delfile = delfile or function(file) writefile(file, "") end
-delfile("vape")
-game.Players.LocalPlayer:Kick("Ghostware has been uninstalled from your files!")
+
+delfolder('vape')
+
+for i,v in next, listfiles('vape/CustomModules') do 
+    if isfile('vape/CustomModules/'..v) then 
+        delfolder('vape/CustomModules/'..v) 
+    end
+end
+
+for i,v in next, ({'GuiLibrary.lua', 'MainScript.lua', 'NewMainScript.lua'}) do 
+    if isfile('vape/'..v) then 
+        delfolder('vape/'..v) 
+    end 
+end
+
+game:GetService('StarterGui'):SetCore('SendNotification', ({
+    Title = 'Ghostware', 
+    Text = 'Successfully uninstalled Ghostware.',
+    Duration = 20
+}))

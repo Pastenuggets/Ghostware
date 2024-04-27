@@ -1,3 +1,4 @@
+if not game.PlaceId == 6872274481 then game.Players.LocalPlayer:Kick("Please do not execute unless you are in a bedwars GAME") else print("in game") end
 if getgenv and not getgenv().shared then getgenv().shared = {} end
 local errorPopupShown = false
 local setidentity = syn and syn.set_thread_identity or set_thread_identity or setidentity or setthreadidentity or function() end
